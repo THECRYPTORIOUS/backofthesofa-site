@@ -1,0 +1,14 @@
+{
+  "name": "Back of the Sofa",
+  "short_name": "Back of the Sofa",
+  "description": "Find the money your home is wasting, and plan dinners on your food budget.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FBF4E8",
+  "theme_color": "#FBF4E8",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
