@@ -204,6 +204,7 @@ p{margin:0}
 .shopc .r{appearance:none;border:0;background:none;color:inherit;font:inherit;padding:2px 0;cursor:pointer;text-align:left;width:100%}
 .shopc .r.far{opacity:.4} .shopc .r.best .bar i{background:var(--good)} .shopc .r.best .nm small{color:var(--good)}
 .planlink{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:13px 14px;border-radius:12px;background:var(--btn);color:var(--btn-ink);text-decoration:none;font-weight:700;font-size:15px}
+.mealsbanner.mealnext{margin:4px 0 22px;border:2px solid var(--good);background:var(--card)}
 .mealsbanner{display:grid;grid-template-columns:1fr auto;gap:0 10px;margin-top:12px;padding:13px 16px;border-radius:16px;background:var(--card);border:1.5px dashed var(--line);color:var(--ink);text-decoration:none}
 .mealsbanner b{font:var(--dw3) 16px var(--display)} .mealsbanner span{font-size:13.5px;color:var(--ink-2);grid-column:1} .mealsbanner .arr{grid-column:2;grid-row:1/3;align-self:center;font-size:20px;color:var(--ink)}
 .bonus{background:var(--pay-bg);color:var(--pay-ink);border-radius:22px;padding:20px 18px;text-align:center;animation:pop .45s cubic-bezier(.2,.8,.3,1.3) both}
@@ -1033,9 +1034,36 @@ function receipt(c, a, animate){
 
 
 
+function mealPrompt(){
+  const ad = A.adults === 'single' ? 1 : A.adults === 'others' ? 3 : 2, n = ad + (+A.kids || 0);
+  const who = answered.has('kids') || answered.has('adults') ? (n === 1 ? 'you' : `your family of ${n}`) : 'your family';
+  const money = answered.has('food') && A.food > 0 ? ` on about ${gbp(A.food)} a week` : ' on your budget';
+  return `<a class="mealsbanner mealnext" href="meals.html"><b>Next: dinners that fit the money you just found</b><span>Seven dinners and a shopping list for ${who}${money}. We've filled in your answers for you.</span><span aria-hidden="true" class="arr">&rarr;</span></a>`;
+}
+/* a short burst of confetti the first time the results open */
+function confetti(){
+  try{
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cv = document.createElement('canvas'), dpr = Math.min(2, devicePixelRatio || 1), W = innerWidth, H = innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr; cv.setAttribute('aria-hidden', 'true');
+    cv.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:60';
+    document.body.appendChild(cv);
+    const x = cv.getContext('2d'); x.scale(dpr, dpr);
+    const cs = getComputedStyle(document.documentElement);
+    const cols = ['--coral', '--hl', '--good', '--pay-bg', '--lilac-ink'].map(v => cs.getPropertyValue(v).trim()).filter(Boolean).concat(['#FFD45E', '#EF7159']);
+    const P = Array.from({length:110}, () => ({x:W / 2 + (Math.random() - .5) * 80, y:H * .32, vx:(Math.random() - .5) * 11, vy:-Math.random() * 12 - 4, w:6 + Math.random() * 6, h:4 + Math.random() * 5, r:Math.random() * 6, vr:(Math.random() - .5) * .4, c:cols[Math.floor(Math.random() * cols.length)]}));
+    const t0 = performance.now();
+    (function step(t){
+      const e = t - t0; x.clearRect(0, 0, W, H);
+      P.forEach(q => { q.vy += .32; q.vx *= .99; q.x += q.vx; q.y += q.vy; q.r += q.vr; x.save(); x.globalAlpha = Math.max(0, 1 - e / 2200); x.translate(q.x, q.y); x.rotate(q.r); x.fillStyle = q.c; x.fillRect(-q.w / 2, -q.h / 2, q.w, q.h); x.restore(); });
+      if (e < 2200) requestAnimationFrame(step); else cv.remove();
+    })(t0);
+  }catch(e){}
+}
 function renderResults(){
   const c = compute(A);
   const anim = !printed; printed = true;
+  if (anim && c.total >= 50) setTimeout(confetti, 350);
   const budgetResult = (+A.income || 0) > 0 ? `<div class="budget" style="margin-bottom:16px">
       <div><div class="big">${gbp(c.left)}</div><div class="lab">left each month now</div></div>
       <div class="arrow">&rarr;</div>
@@ -1105,6 +1133,7 @@ function renderResults(){
     ${billsHtml}
     ${foodHtml}
     ${budget}
+    ${mealPrompt()}
     <div class="sec-h"><h2>Share your receipt</h2></div>
     <div class="card share"><a class="btn wa" href="${waLink(shareText(c))}" target="_blank" rel="noopener">${WA_ICON}Send to a friend</a>
       <p class="hint" style="margin-top:14px">Or make a picture for your Instagram or Facebook story. Your numbers stay on your phone until you choose to post.</p>
