@@ -109,6 +109,11 @@ p{margin:0}
 .steps .num{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:var(--display);font-weight:var(--dw);font-size:20px;background:var(--num-bg);color:var(--ink)}
 .steps b{display:block;font-family:var(--display);font-weight:var(--dw3);font-size:17px;letter-spacing:-0.2px}
 .steps span{font-size:14.5px;color:var(--ink-2)}
+.checks{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.checks li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.checks b{display:block;font:700 14.5px/1.25 var(--body);color:var(--ink)}
+.checks span{display:block;font-size:12.5px;line-height:1.3;color:var(--ink-2);margin-top:3px}
+.hero .cta{margin-top:16px}
 .trust{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .trust span{display:inline-flex;align-items:center;gap:6px;font:600 13px var(--body);background:var(--card);border:1px solid var(--line);padding:7px 11px;border-radius:999px}
 .trust svg{width:15px;height:15px;color:var(--good)}
@@ -353,11 +358,20 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 
   <section class="hero" id="top">
     <h1>Find the money your home is <span class="swoosh">wasting</span>.</h1>
-    <a class="proof" href="#example" data-act="showex"><span class="k">OUR EXAMPLE FAMILY FOUND</span><b class="exTotal">£1,799 a year</b><span>in about three minutes. See how &rarr;</span></a>
-    <p class="lede">Free changes first, then the buys that pay for themselves. No sign-up. Nothing leaves your phone.</p>
+    <p class="lede">Answer a few quick questions about your home, one tap each. We'll show you where your money is going, how to keep more of it, and any help you might be owed.</p>
+    <ul class="checks" aria-label="What we check">
+      <li><b>Phones and broadband</b><span>Today's cheapest deals</span></li>
+      <li><b>Food shop</b><span>The cheapest supermarket for you</span></li>
+      <li><b>Energy and heating</b><span>Free fixes first</span></li>
+      <li><b>Washing and drying</b><span>What it really costs</span></li>
+      <li><b>Money you're owed</b><span>Benefits and discounts</span></li>
+      <li><b>Weekly meal plan</b><span>Dinners that fit your budget</span></li>
+    </ul>
+    <a class="proof" href="#example" data-act="showex"><span class="k">OUR EXAMPLE FAMILY FOUND</span><b class="exTotal">£1,798 a year</b><span>in about three minutes. See how &rarr;</span></a>
+    <button class="btn coral cta" data-act="totool">Find my money <span aria-hidden="true">&darr;</span></button>
     <ol class="steps">
       <li><span class="num">1</span><div><b>Start with the big ones</b><span>Your bills and food shop are where most families find the most. Or do the whole house, one tap per question.</span></div></li>
-      <li><span class="num">2</span><div><b>Watch your savings add up</b><span>Free changes first, then the buys that pay for themselves. We'll tell you which ones don't.</span></div></li>
+      <li><span class="num">2</span><div><b>Watch your savings add up</b><span>Each room shows what you could save: free changes first, then today's cheapest deals and the buys that pay for themselves.</span></div></li>
       <li><span class="num">3</span><div><b>See what you might be owed</b><span>Like Child Benefit, Marriage Allowance, 25% off council tax, or the £100 energy payment from January.</span></div></li>
     </ol>
     <div class="trust">
@@ -366,7 +380,6 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Nothing leaves your phone</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Figures from Which?, the Energy Saving Trust and Ofgem</span>
     </div>
-    <button class="btn coral cta" data-act="totool">Find my money <span aria-hidden="true">&darr;</span></button>
     <a class="mealsbanner" href="meals.html"><b>New: meal planner</b><span>7 dinners and a shopping list that fit your budget</span><span aria-hidden="true" class="arr">&rarr;</span></a>
   </section>
 
@@ -374,7 +387,7 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 
   <section class="faq stack" aria-label="Common questions">
     <h2>Common questions</h2>
-    <details id="example"><summary>Who's the example family?</summary><p class="ans">Two adults and two children (the youngest is at primary school), both parents working. They tumble dry 5 loads a week in a condenser dryer, cook 4 dinners a week in an electric oven, have an electric shower, two phones on EE past their contract at £55 a month, BT broadband past its contract, and a £125 weekly shop at Tesco without a Clubcard. The free changes, money-saving buys, bills and food shop add up to <b class="exTotal">£1,799 a year</b>. That's before any money they might be owed. Your total depends on your answers.</p></details>
+    <details id="example"><summary>Who's the example family?</summary><p class="ans">Two adults and two children (the youngest is at primary school), both parents working. They tumble dry 5 loads a week in a condenser dryer, cook 4 dinners a week in an electric oven, have an electric shower, two phones on EE past their contract at £55 a month, BT broadband past its contract, and a £125 weekly shop at Tesco without a Clubcard. The free changes, money-saving buys, bills and food shop add up to <b class="exTotal">£1,798 a year</b>. That's before any money they might be owed. Your total depends on your answers.</p></details>
     <details><summary>Is it really free?</summary><p class="ans">Yes. There's no sign-up, no email and nothing to pay.</p></details>
     <details><summary>What happens to my answers?</summary><p class="ans">They stay on your phone. We never see them, and there's no account to make.</p></details>
     <details><summary>Where do the numbers come from?</summary><p class="ans">Which? appliance tests, the Energy Saving Trust, Nesta, Ofgem's price cap and GOV.UK. Every figure is listed under "How we worked it out" in your results.</p></details>
