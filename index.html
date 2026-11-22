@@ -370,6 +370,12 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 .themes-l{font-size:12px;font-weight:700;color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+<!--track--><script>/* Where a visitor came from (a link like backofthesofa.uk/?from=tiktok), so Amazon can report earnings per app.
+   Add a tracking ID below only once it exists in Amazon Associates; until then every link keeps the main ID. */
+(function(){var TAGS={/* tiktok:'', instagram:'', pinterest:'' */},K='bots-from';
+try{var f=(new URLSearchParams(location.search).get('from')||'').toLowerCase();if(/^[a-z]{2,20}$/.test(f))localStorage.setItem(K,JSON.stringify({f:f,t:Date.now()}));}catch(e){}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="amazon.co.uk"]');if(!a)return;
+try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592e6||!TAGS[s.f])return;var u=new URL(a.href);u.searchParams.set('tag',TAGS[s.f]);a.href=u.toString();}catch(e){}},true);})();</script><!--/track-->
 </head>
 <body>
 <div class="wrap">
@@ -411,7 +417,7 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
   <section class="faq stack" aria-label="Common questions">
     <h2>Common questions</h2>
     <details id="example"><summary>Who's the example family?</summary><p class="ans">Two adults and two children (the youngest is at primary school), both parents working. They tumble dry 5 loads a week in a condenser dryer, cook 4 dinners a week in an electric oven, have an electric shower, two phones on EE past their contract at £55 a month, BT broadband past its contract, and a £125 weekly shop at Tesco without a Clubcard. The free changes, money-saving buys, bills and food shop add up to <b class="exTotal">£1,798 a year</b>. That's before any money they might be owed. Your total depends on your answers.</p></details>
-    <details><summary>Is it really free?</summary><p class="ans">Yes. There's no sign-up, no email and nothing to pay.</p></details>
+    <details><summary>Is it really free?</summary><p class="ans">Yes. There's no sign-up, no email and nothing to pay. If you buy something through one of our Amazon links, Amazon may pay us a small commission. It never costs you more, and it never changes what we suggest. That's why we'll tell you when something isn't worth buying.</p></details>
     <details><summary>What happens to my answers?</summary><p class="ans">They stay on your phone. We never see them, and there's no account to make.</p></details>
     <details><summary>Where do the numbers come from?</summary><p class="ans">Which? appliance tests, the Energy Saving Trust, Nesta, Ofgem's price cap and GOV.UK. Every figure is listed under "How we worked it out" in your results.</p></details>
     <details><summary>Why do you tell me not to buy things?</summary><p class="ans">Because a gadget that costs more to run than what you've got isn't a saving. On big loads, a heated airer can cost more than a tumble dryer, so we say so.</p></details>
@@ -785,7 +791,7 @@ function compute(a){
   if (a.uc !== 'yes' && working && a.childcare > 0 && a.kids > 0 && a.youngest !== '12plus') {
     owed.push({t:'Tax-Free Childcare top-up', s:Math.min(a.childcare * 12 * 0.2, 2000 * a.kids), per:'a year', st:'Check', d:'For every £8 you pay your childcare provider through the account, the government adds £2, up to £2,000 per child a year. For working parents not on Universal Credit.', link:'https://www.gov.uk/tax-free-childcare'});
   }
-  owed.push({t:'Check everything else', s:0, st:'Free', d:"GOV.UK lists free, independent benefits calculators that take about 10 minutes. Around £24 billion of support goes unclaimed every year.", link:'https://www.gov.uk/benefits-calculators'});
+  owed.push({t:'Check everything else', s:0, st:'Free', d:"GOV.UK lists free, independent benefits calculators that take about 10 minutes. Around £24 billion of support goes unclaimed every year, and lots of working families qualify.", link:'https://www.gov.uk/benefits-calculators'});
 
   /* totals */
   free.sort((x, y) => y.s - x.s);
