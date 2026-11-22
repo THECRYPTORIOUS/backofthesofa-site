@@ -728,105 +728,105 @@ const KID_BASICS = [['yoghurt', 4]];
    p = main protein, b = base, k = kit (slow cooker or air fryer friendly), sc = how much families tend to love it (1 to 5).
    tags: hot = spicy, frz = freezes well, fake = fakeaway, sun = Sunday dinner */
 const R = {
-  bolognese:{g:'spagtom', n:'Spaghetti bolognese', p:'beef', b:'pasta', m:35, sc:5, frz:1,
+  bolognese:{kit:[['hob']], g:'spagtom', n:'Spaghetti bolognese', p:'beef', b:'pasta', m:35, sc:5, frz:1,
     ing:[['mince', 500], ['onion', 150], ['carrot', 150], ['mushrooms', 125], ['chopped', 2], ['spag', 400]], cup:['oil', 'garlic', 'puree', 'stock', 'herbs'],
     st:['Fry the chopped onion, grated carrot and mushrooms in a little oil for 5 minutes.', 'Add the mince and garlic and brown it, breaking it up with a spoon.', 'Stir in the tomatoes, a spoon of purée, a crumbled stock cube and the herbs. Simmer for 20 minutes.', 'Cook the spaghetti, drain and serve with the sauce.'],
     tip:'Grated carrot and mushrooms stretch the mince further, and kids rarely notice.'},
-  chilli:{g:'chilli', n:'Chilli con carne and rice', p:'beef', b:'rice', m:40, sc:4, frz:1, hot:1,
+  chilli:{kit:[['hob']], g:'chilli', n:'Chilli con carne and rice', p:'beef', b:'rice', m:40, sc:4, frz:1, hot:1,
     ing:[['mince', 500], ['onion', 150], ['peppers', 1], ['kidney', 2], ['chopped', 2], ['rice', 300]], cup:['oil', 'garlic', 'chilli', 'cumin', 'puree', 'stock'],
     st:['Fry the onion and chopped pepper in a little oil for 5 minutes.', 'Add the mince, garlic, chilli powder and cumin, and cook until browned.', 'Add the tomatoes, drained beans, a spoon of purée and a stock cube. Simmer for 25 minutes.', 'Cook the rice and serve.'],
     tip:'Go light on the chilli for the kids and put hot sauce on the table for the grown-ups.'},
-  cottage:{n:'Cottage pie', p:'beef', b:'potato', m:60, sc:5, frz:1,
+  cottage:{kit:[['hob'], ['oven']], n:'Cottage pie', p:'beef', b:'potato', m:60, sc:5, frz:1,
     ing:[['mince', 500], ['onion', 150], ['carrot', 200], ['peas', 150], ['potato', 1000], ['milk', 60], ['spread', 25]], cup:['gravy', 'herbs', 'worcester'],
     st:['Boil the peeled potatoes for 15 to 20 minutes, then mash with the milk and spread.', 'Meanwhile brown the mince with the chopped onion and carrot.', 'Add the peas, herbs, a dash of Worcestershire sauce and enough gravy to make it saucy. Simmer for 10 minutes.', 'Tip into a dish, top with the mash and bake at 200°C (180°C fan) for 25 minutes until golden.']},
-  sausmash:{n:'Sausage and mash with onion gravy', p:'pork', b:'potato', m:30, sc:5, k:'af',
+  sausmash:{kit:[['hob']], n:'Sausage and mash with onion gravy', p:'pork', b:'potato', m:30, sc:5, k:'af',
     ing:[['sausages', 8], ['potato', 1000], ['peas', 300], ['milk', 60], ['spread', 25], ['onion', 150]], cup:['gravy', 'oil'],
-    st:['Cook the sausages in the oven at 200°C (180°C fan) for 25 minutes, or 12 to 15 minutes in the air fryer, turning halfway.', 'Boil the potatoes for 15 to 20 minutes, then mash with the milk and spread.', 'Soften the sliced onion in a little oil, then add gravy made up with boiling water.', 'Cook the peas and serve everything with the onion gravy.']},
-  sauscass:{n:'Sausage and bean casserole', p:'pork', b:'potato', m:45, sc:4, k:'slow', frz:1,
+    st:['Cook the sausages in the oven at 200°C (180°C fan) for 25 minutes, 12 to 15 minutes in the air fryer, or about 15 minutes in a frying pan. Turn them halfway.', 'Boil the potatoes for 15 to 20 minutes, then mash with the milk and spread.', 'Soften the sliced onion in a little oil, then add gravy made up with boiling water.', 'Cook the peas and serve everything with the onion gravy.']},
+  sauscass:{kit:[['hob'], ['micro', 'oven', 'af']], n:'Sausage and bean casserole', p:'pork', b:'potato', m:45, sc:4, k:'slow', frz:1,
     ing:[['sausages', 8], ['onion', 150], ['carrot', 150], ['chopped', 1], ['beans', 2], ['bakingpot', 4]], cup:['paprika', 'stock', 'herbs'],
     st:['Brown the sausages in a pan, then cut each one into three.', 'Slow cooker: add everything except the potatoes, with a crumbled stock cube and a spoon of paprika. Cook on low for 6 hours.', 'No slow cooker? Simmer it all in a covered pan for 30 minutes.', 'Serve with jacket potatoes: microwave for 8 to 10 minutes, then crisp in the oven or air fryer.']},
-  toad:{n:'Toad in the hole', p:'pork', b:'potato', m:45, sc:4,
+  toad:{kit:[['oven'], ['hob']], n:'Toad in the hole', p:'pork', b:'potato', m:45, sc:4,
     ing:[['sausages', 8], ['eggs', 3], ['milk', 300], ['mixedveg', 400], ['potato', 800]], cup:['flour', 'oil', 'gravy'],
     st:['Heat the oven to 220°C (200°C fan). Put the sausages in a roasting tin with a little oil and cook for 10 minutes.', 'Whisk 140g plain flour with the eggs and milk into a smooth batter.', 'Pour the batter round the hot sausages and bake for 25 minutes without opening the door.', 'Serve with boiled or mashed potatoes, the veg and gravy.']},
-  fajitas:{n:'Chicken fajitas', p:'chicken', b:'wrap', m:25, sc:5, fake:1,
+  fajitas:{kit:[['hob']], n:'Chicken fajitas', p:'chicken', b:'wrap', m:25, sc:5, fake:1,
     ing:[['chbreast', 500], ['peppers', 2], ['onion', 150], ['wraps', 8], ['cheese', 100], ['tomatoes', 2]], cup:['oil', 'paprika', 'cumin', 'garlic'],
     st:['Slice the chicken, peppers and onion into strips.', 'Fry the chicken in a little oil for 5 minutes, then add the veg, garlic, paprika and cumin. Cook for 5 to 8 minutes until the chicken is cooked through.', 'Warm the wraps and let everyone fill their own with chicken, grated cheese and chopped tomato.']},
-  roast:{n:'Roast chicken dinner', p:'chicken', b:'potato', m:100, sc:5, sun:1,
+  roast:{kit:[['oven'], ['hob']], n:'Roast chicken dinner', p:'chicken', b:'potato', m:100, sc:5, sun:1,
     ing:[['chwhole', 1], ['potato', 1200], ['carrot', 300], ['peas', 200], ['yorkshires', 8]], cup:['oil', 'gravy', 'herbs'],
     st:['Heat the oven to 200°C (180°C fan). Roast the chicken for 20 minutes per 500g plus 20 minutes, until the juices run clear.', 'Boil the potatoes for 8 minutes, drain and shake, then roast in a little hot oil for 45 to 50 minutes.', 'Boil the carrots and peas. Heat the Yorkshire puddings for the last few minutes.', 'Make gravy with the granules and some of the veg water.'],
     tip:'Pick off any leftover chicken for tomorrow\'s sandwiches.'},
-  currych:{g:'curry', n:'Chicken curry and rice', p:'chicken', b:'rice', m:35, sc:4, k:'slow', frz:1, fake:1,
+  currych:{kit:[['hob']], g:'curry', n:'Chicken curry and rice', p:'chicken', b:'rice', m:35, sc:4, k:'slow', frz:1, fake:1,
     ing:[['chthigh', 600], ['onion', 150], ['currypaste', 95], ['chopped', 1], ['spinach', 120], ['cremefr', 100], ['rice', 300]], cup:['oil', 'garlic'],
     st:['Fry the onion in a little oil for 5 minutes, then stir in the curry paste and garlic for a minute.', 'Add the chicken in chunks and the tomatoes. Simmer for 20 minutes, or cook on low for 4 hours in a slow cooker.', 'Stir in the spinach and crème fraîche until the spinach wilts.', 'Serve with rice.'],
     tip:'The crème fraîche makes it milder for kids.'},
-  chcass:{n:'Chicken casserole', p:'chicken', b:'potato', m:30, sc:4, k:'slow', frz:1,
+  chcass:{kit:[['slow', 'oven']], n:'Chicken casserole', p:'chicken', b:'potato', m:30, sc:4, k:'slow', frz:1,
     ing:[['chbone', 1000], ['potato', 800], ['carrot', 300], ['onion', 150], ['leeks', 250], ['peas', 150]], cup:['stock', 'herbs', 'gravy'],
     st:['Slow cooker: put the chopped potatoes, carrots, onion and leek in the bottom and sit the chicken on top.', 'Add 2 stock cubes in 500ml boiling water and the herbs. Cook on low for 6 to 7 hours.', 'No slow cooker? Use a lidded dish in the oven at 170°C (150°C fan) for 1½ hours.', 'Stir in the peas and thicken with a little gravy for the last 10 minutes.']},
-  traybake:{n:'Chicken and potato traybake', p:'chicken', b:'potato', m:50, sc:4, k:'af',
+  traybake:{kit:[['oven', 'af'], ['hob', 'micro']], n:'Chicken and potato traybake', p:'chicken', b:'potato', m:50, sc:4, k:'af',
     ing:[['chbone', 1000], ['potato', 800], ['peppers', 2], ['onion', 150], ['broccoli', 1]], cup:['oil', 'paprika', 'herbs'],
     st:['Heat the oven to 200°C (180°C fan). Cut the potatoes into wedges and the peppers and onion into chunks.', 'Toss everything with the chicken, a little oil, paprika and herbs in a big roasting tin.', 'Roast for 40 to 45 minutes until the chicken is cooked through. In an air fryer, cook in batches for about 25 minutes.', 'Steam the broccoli and serve.']},
-  stirfry:{n:'Chicken noodle stir fry', p:'chicken', b:'noodles', m:20, sc:4, fake:1,
+  stirfry:{kit:[['hob']], n:'Chicken noodle stir fry', p:'chicken', b:'noodles', m:20, sc:4, fake:1,
     ing:[['chbreast', 400], ['stirfry', 600], ['noodles', 820]], cup:['soy', 'oil', 'garlic', 'sugar'],
     st:['Slice the chicken into thin strips and stir-fry in a hot pan with a little oil for 5 to 6 minutes.', 'Add the stir fry veg and garlic and cook for 3 minutes.', 'Add the noodles, a few spoons of soy sauce and a pinch of sugar. Toss for 2 minutes until hot.']},
-  fishfingers:{n:'Fish fingers, chips and peas', p:'fish', b:'potato', m:25, sc:5, k:'af', fake:1,
+  fishfingers:{kit:[['oven', 'af'], ['hob', 'micro']], n:'Fish fingers, chips and peas', p:'fish', b:'potato', m:25, sc:5, k:'af', fake:1,
     ing:[['fishfingers', 20], ['chips', 800], ['peas', 300]], cup:['ketchup'],
     st:['Oven: cook the chips and fish fingers on trays at 200°C (180°C fan), following the pack times.', 'Air fryer: chips first for about 15 minutes, then the fish fingers for 8 to 10 minutes.', 'Cook the peas and serve.'],
     tip:'Fish finger sandwiches are a hit too.'},
-  tunabake:{n:'Tuna and sweetcorn pasta bake', p:'fish', b:'pasta', m:35, sc:4,
+  tunabake:{kit:[['hob'], ['oven']], n:'Tuna and sweetcorn pasta bake', p:'fish', b:'pasta', m:35, sc:4,
     ing:[['pasta', 400], ['tuna', 2], ['sweetcorn', 1], ['chopped', 1], ['cremefr', 150], ['cheese', 120]], cup:['herbs', 'puree'],
     st:['Cook the pasta for 2 minutes less than the pack says, then drain.', 'Mix with the drained tuna and sweetcorn, the tomatoes, crème fraîche, a spoon of purée and the herbs.', 'Tip into a dish, top with grated cheese and bake at 200°C (180°C fan) for 20 minutes.']},
-  jackets:{g:'jacket', n:'Jacket potatoes with beans and cheese', p:'veg', b:'potato', m:25, sc:3, k:'af',
+  jackets:{kit:[['micro', 'oven', 'af'], ['hob', 'micro']], g:'jacket', n:'Jacket potatoes with beans and cheese', p:'veg', b:'potato', m:25, sc:3, k:'af',
     ing:[['bakingpot', 4], ['beans', 2], ['cheese', 120], ['spread', 20], ['tomatoes', 2], ['cucumber', 0.5]], cup:[],
-    st:['Prick the potatoes and microwave for 8 to 10 minutes, then crisp in the oven at 200°C (180°C fan) or the air fryer for 15 minutes.', 'Heat the beans.', 'Split the potatoes and add a little spread, the beans and grated cheese. Serve with chopped cucumber and tomato.']},
-  vegchilli:{g:'chilli', n:'Veggie bean chilli', p:'veg', b:'rice', m:35, sc:3, frz:1, hot:1,
+    st:['Prick the potatoes and microwave for 8 to 10 minutes, then crisp in the oven at 200°C (180°C fan) or the air fryer for 15 minutes. No microwave? Give them about an hour in the oven or 40 minutes in the air fryer.', 'Heat the beans in a pan or the microwave.', 'Split the potatoes and add a little spread, the beans and grated cheese. Serve with chopped cucumber and tomato.']},
+  vegchilli:{kit:[['hob']], g:'chilli', n:'Veggie bean chilli', p:'veg', b:'rice', m:35, sc:3, frz:1, hot:1,
     ing:[['kidney', 2], ['beans', 1], ['onion', 150], ['peppers', 2], ['chopped', 2], ['sweetcorn', 1], ['rice', 300], ['cheese', 60]], cup:['oil', 'garlic', 'chilli', 'cumin', 'paprika', 'stock'],
     st:['Fry the onion and peppers in a little oil for 5 minutes, then add the garlic and spices.', 'Add the tomatoes, drained kidney beans, baked beans, sweetcorn and a stock cube. Simmer for 20 minutes.', 'Serve with rice and a little grated cheese.']},
-  dahl:{g:'curry', n:'Red lentil dahl with rice', p:'veg', b:'rice', m:35, sc:3, frz:1,
+  dahl:{kit:[['hob']], g:'curry', n:'Red lentil dahl with rice', p:'veg', b:'rice', m:35, sc:3, frz:1,
     ing:[['lentils', 300], ['onion', 150], ['chopped', 1], ['currypaste', 60], ['spinach', 120], ['rice', 300]], cup:['oil', 'garlic', 'stock'],
     st:['Fry the onion in a little oil for 5 minutes, then stir in the curry paste and garlic.', 'Add the rinsed lentils, tomatoes and a stock cube in 800ml boiling water. Simmer for 20 to 25 minutes, stirring now and then, until thick.', 'Stir in the spinach and serve with rice.']},
-  pastabake:{n:'Cheesy tomato and veg pasta bake', p:'veg', b:'pasta', m:35, sc:4,
+  pastabake:{kit:[['hob'], ['oven']], n:'Cheesy tomato and veg pasta bake', p:'veg', b:'pasta', m:35, sc:4,
     ing:[['pasta', 400], ['chopped', 2], ['peppers', 1], ['mushrooms', 125], ['onion', 150], ['cheese', 120]], cup:['oil', 'herbs', 'garlic', 'puree'],
     st:['Cook the pasta for 2 minutes less than the pack says.', 'Fry the onion, pepper and mushrooms in a little oil for 5 minutes. Add the garlic, tomatoes, purée and herbs and simmer for 10 minutes.', 'Mix with the pasta, top with cheese and bake at 200°C (180°C fan) for 15 to 20 minutes.']},
-  pizza:{n:'Homemade wrap pizzas', p:'veg', b:'wrap', m:20, sc:5, k:'af', fake:1,
+  pizza:{kit:[['oven', 'af']], n:'Homemade wrap pizzas', p:'veg', b:'wrap', m:20, sc:5, k:'af', fake:1,
     ing:[['wraps', 8], ['chopped', 1], ['mozz', 200], ['peppers', 1], ['mushrooms', 125], ['sweetcorn', 1], ['cucumber', 0.5]], cup:['puree', 'herbs'],
     st:['Heat the oven to 200°C (180°C fan). Mash the tomatoes with a spoon of purée and the herbs to make the sauce.', 'Spread a thin layer on each wrap and let everyone add their own toppings and cheese.', 'Bake on trays for 8 to 10 minutes until crisp, or 5 to 6 minutes in the air fryer. Serve with cucumber sticks.']},
-  friedrice:{n:'Egg fried rice with peas and sweetcorn', p:'veg', b:'rice', m:20, sc:3,
+  friedrice:{kit:[['hob']], n:'Egg fried rice with peas and sweetcorn', p:'veg', b:'rice', m:20, sc:3,
     ing:[['rice', 300], ['eggs', 4], ['peas', 250], ['sweetcorn', 1], ['onion', 75]], cup:['soy', 'oil', 'garlic'],
     st:['Cook the rice and spread it out to steam dry. Day-old rice works best.', 'Fry the onion in a little oil, then add the peas, sweetcorn and garlic for 2 minutes.', 'Push it all to one side, scramble the eggs, then stir in the rice and soy sauce until piping hot.']},
-  frittata:{n:'Potato, spinach and cheese frittata', p:'veg', b:'potato', m:35, sc:3,
+  frittata:{kit:[['hob']], n:'Potato, spinach and cheese frittata', p:'veg', b:'potato', m:35, sc:3,
     ing:[['eggs', 8], ['potato', 500], ['onion', 150], ['spinach', 120], ['cheese', 80], ['tomatoes', 3], ['cucumber', 0.5]], cup:['oil'],
-    st:['Boil the sliced potatoes for 8 minutes and drain.', 'Fry the onion in an ovenproof pan, then add the potatoes and spinach until it wilts.', 'Pour over the beaten eggs, sprinkle on the cheese and cook gently for 8 minutes, then finish under the grill until set.', 'Serve in wedges with a tomato and cucumber salad.']},
-  macncheese:{n:'Mac and cheese with broccoli', p:'veg', b:'pasta', m:30, sc:4,
+    st:['Boil the sliced potatoes for 8 minutes and drain.', 'Fry the onion in a frying pan, then add the potatoes and spinach until it wilts.', 'Pour over the beaten eggs, sprinkle on the cheese and cook gently for 8 minutes. Finish under the grill if your pan can go under it, or put a lid on for 5 minutes, until set.', 'Serve in wedges with a tomato and cucumber salad.']},
+  macncheese:{kit:[['hob']], n:'Mac and cheese with broccoli', p:'veg', b:'pasta', m:30, sc:4,
     ing:[['pasta', 350], ['cheese', 200], ['milk', 600], ['spread', 40], ['broccoli', 1]], cup:['flour', 'mustard'],
-    st:['Cook the pasta, adding the broccoli for the last 4 minutes.', 'Melt the spread in a pan, stir in 40g plain flour, then whisk in the milk a bit at a time until thick.', 'Stir in most of the cheese and a little mustard, then the pasta and broccoli.', 'Top with the rest of the cheese and grill until golden.']},
-  meatballs:{g:'spagtom', n:'Meatballs in tomato sauce with spaghetti', p:'beef', b:'pasta', m:30, sc:5,
+    st:['Cook the pasta, adding the broccoli for the last 4 minutes.', 'Melt the spread in a pan, stir in 40g plain flour, then whisk in the milk a bit at a time until thick.', 'Stir in most of the cheese and a little mustard, then the pasta and broccoli.', 'Top with the rest of the cheese and grill until golden. No grill? Put a lid on for a few minutes until it melts.']},
+  meatballs:{kit:[['hob']], g:'spagtom', n:'Meatballs in tomato sauce with spaghetti', p:'beef', b:'pasta', m:30, sc:5,
     ing:[['meatballs', 16], ['chopped', 2], ['onion', 150], ['spag', 400]], cup:['oil', 'garlic', 'puree', 'herbs', 'sugar'],
     st:['Brown the meatballs in a little oil for 5 minutes, then lift them out.', 'Soften the onion and garlic, then add the tomatoes, a spoon of purée, the herbs and a pinch of sugar. Simmer for 10 minutes.', 'Put the meatballs back in and simmer for 10 minutes until cooked through.', 'Serve with spaghetti.']},
-  burgers:{n:'Burger night with potato wedges', p:'beef', b:'bun', m:30, sc:5, k:'af', fake:1,
+  burgers:{kit:[['oven', 'af']], n:'Burger night with potato wedges', p:'beef', b:'bun', m:30, sc:5, k:'af', fake:1,
     ing:[['burgers', 4], ['buns', 4], ['potato', 800], ['tomatoes', 2], ['cucumber', 0.5], ['cheese', 60]], cup:['oil', 'paprika', 'ketchup'],
-    st:['Cut the potatoes into wedges, toss with a little oil and paprika and roast at 200°C (180°C fan) for 30 minutes, or air fry for 20.', 'Grill or fry the burgers for 12 to 15 minutes, turning, until cooked through.', 'Serve in buns with cheese, sliced tomato and cucumber.']},
-  sauspasta:{n:'Sausage and tomato pasta', p:'pork', b:'pasta', m:30, sc:4, frz:1,
+    st:['Cut the potatoes into wedges, toss with a little oil and paprika and roast at 200°C (180°C fan) for 30 minutes, or air fry for 20.', 'Grill or fry the burgers for 12 to 15 minutes, or air fry for about 10, turning, until cooked through.', 'Serve in buns with cheese, sliced tomato and cucumber.']},
+  sauspasta:{kit:[['hob']], n:'Sausage and tomato pasta', p:'pork', b:'pasta', m:30, sc:4, frz:1,
     ing:[['sausages', 8], ['pasta', 400], ['chopped', 2], ['onion', 150], ['peppers', 1]], cup:['oil', 'garlic', 'paprika', 'herbs'],
     st:['Squeeze the sausage meat out of the skins in small pieces and fry until browned.', 'Add the onion and pepper for 5 minutes, then the garlic, paprika, tomatoes and herbs. Simmer for 10 minutes.', 'Cook the pasta, drain and stir it through the sauce.']},
-  carbonara:{n:'Creamy bacon and pea pasta', p:'pork', b:'pasta', m:20, sc:4,
+  carbonara:{kit:[['hob']], n:'Creamy bacon and pea pasta', p:'pork', b:'pasta', m:20, sc:4,
     ing:[['lardons', 200], ['pasta', 400], ['peas', 200], ['eggs', 2], ['cremefr', 150], ['cheese', 60]], cup:['garlic', 'salt'],
     st:['Cook the pasta, adding the peas for the last 3 minutes.', 'Fry the lardons until crisp, adding a little garlic at the end.', 'Mix the eggs, crème fraîche and grated cheese. Drain the pasta, keeping a cup of the water.', 'Off the heat, stir everything together with a splash of the pasta water until creamy.']},
-  beefstew:{n:'Beef and veg stew', p:'beef', b:'potato', m:30, sc:4, k:'slow', frz:1,
+  beefstew:{kit:[['hob'], ['slow', 'oven']], n:'Beef and veg stew', p:'beef', b:'potato', m:30, sc:4, k:'slow', frz:1,
     ing:[['dicedbeef', 400], ['potato', 800], ['carrot', 300], ['onion', 150], ['leeks', 250]], cup:['flour', 'stock', 'gravy', 'herbs'],
     st:['Toss the beef in a spoon of flour and brown it in a hot pan.', 'Slow cooker: add the chopped potatoes, carrots, onion and leek, 2 stock cubes in 600ml boiling water and the herbs. Cook on low for 7 to 8 hours.', 'No slow cooker? Use a lidded dish in the oven at 160°C (140°C fan) for 2½ hours.', 'Thicken with a little gravy and serve.'],
     tip:'Lots of veg means 400g of beef feeds the whole family.'},
-  soup:{n:'Leek and potato soup with cheesy toast', p:'veg', b:'bread', m:35, sc:2, frz:1,
+  soup:{kit:[['hob']], n:'Leek and potato soup with cheesy toast', p:'veg', b:'bread', m:35, sc:2, frz:1,
     ing:[['leeks', 500], ['potato', 600], ['onion', 150], ['milk', 200], ['bread', 0.5], ['cheese', 60]], cup:['oil', 'stock'],
     st:['Soften the sliced leeks and onion in a little oil for 8 minutes.', 'Add the diced potatoes and 2 stock cubes in a litre of boiling water. Simmer for 20 minutes.', 'Blend until smooth and stir in the milk.', 'Serve with cheese on toast for dunking.']},
-  brinner:{n:'Breakfast for dinner', p:'pork', b:'bread', m:20, sc:4, k:'af',
+  brinner:{kit:[['hob']], n:'Breakfast for dinner', p:'pork', b:'bread', m:20, sc:4, k:'af',
     ing:[['sausages', 8], ['beans', 2], ['eggs', 4], ['bread', 0.5], ['tomatoes', 2]], cup:['oil'],
-    st:['Cook the sausages in the oven or air fryer.', 'Halve the tomatoes and grill or fry them, and heat the beans.', 'Fry or scramble the eggs and make toast.']},
-  chickpeacurry:{g:'curry', n:'Chickpea and spinach curry', p:'veg', b:'rice', m:25, sc:3, frz:1,
+    st:['Cook the sausages in the oven, the air fryer or a frying pan.', 'Halve the tomatoes and grill or fry them, and heat the beans.', 'Fry or scramble the eggs and make toast.']},
+  chickpeacurry:{kit:[['hob']], g:'curry', n:'Chickpea and spinach curry', p:'veg', b:'rice', m:25, sc:3, frz:1,
     ing:[['chickpeas', 2], ['chopped', 1], ['currysauce', 1], ['spinach', 240], ['onion', 150], ['rice', 300]], cup:['oil', 'garlic'],
     st:['Fry the onion and garlic in a little oil for 5 minutes.', 'Add the drained chickpeas, tomatoes and curry sauce. Simmer for 15 minutes.', 'Stir in the spinach until it wilts and serve with rice.']},
-  tunajackets:{g:'jacket', n:'Jacket potatoes with tuna and sweetcorn', p:'fish', b:'potato', m:25, sc:3, k:'af',
+  tunajackets:{kit:[['micro', 'oven', 'af']], g:'jacket', n:'Jacket potatoes with tuna and sweetcorn', p:'fish', b:'potato', m:25, sc:3, k:'af',
     ing:[['bakingpot', 4], ['tuna', 2], ['sweetcorn', 1], ['tomatoes', 2], ['cucumber', 0.5]], cup:['mayo'],
-    st:['Prick the potatoes and microwave for 8 to 10 minutes, then crisp in the oven or air fryer.', 'Mix the drained tuna and sweetcorn with a spoon or two of mayo.', 'Fill the potatoes and serve with cucumber and tomato.']}
+    st:['Prick the potatoes and microwave for 8 to 10 minutes, then crisp in the oven or air fryer if you like. No microwave? Give them about an hour in the oven or 40 minutes in the air fryer.', 'Mix the drained tuna and sweetcorn with a spoon or two of mayo.', 'Fill the potatoes and serve with cucumber and tomato.']}
 };
 
 const CONFIG = {
@@ -852,11 +852,12 @@ const amz = q => 'https://www.amazon.co.uk/s?k=' + encodeURIComponent(q) + (CONF
 function mulberry32(a){ return function(){ a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 
 /* ---------- state ---------- */
-const START = {budget:80, basics:true, adults:2, kids:2, shop:'aldi', slow:false, af:false, veg:false, noPork:false, noFish:false, mild:false};
+const START = {budget:80, basics:true, adults:2, kids:2, shop:'aldi', oven:true, hob:true, micro:true, slow:false, af:false, veg:false, noPork:false, noFish:false, mild:false};
+let FUEL = '';         // 'electric' or 'gas', from the house check if they answered it
 let M = {...START};
 let PL = null;          // {days:[recipe ids], seed, tried:{day:[ids]}}
 let got = new Set();    // shopping items already at home
-let view = 'form', prefilled = false, recipeOpen = -1;
+let view = 'form', prefilled = false, recipeOpen = -1, noPlan = false;
 function save(){ try{ localStorage.setItem('bots-meals', JSON.stringify({M, PL, got:[...got], view})); }catch(e){} }
 function load(){ try{ const s = localStorage.getItem('bots-meals'); return s ? JSON.parse(s) : null; }catch(e){ return null; } }
 function prefill(){
@@ -866,12 +867,16 @@ function prefill(){
     if (ans.has('food') && a.food > 0) { M.budget = Math.round(a.food); prefilled = true; }
     if (ans.has('shop') && SHOPS.p[a.shop]) { M.shop = a.shop; prefilled = true; }
     if (ans.has('adults')) { M.adults = a.adults === 'single' ? 1 : a.adults === 'others' ? 3 : 2; prefilled = true; }
+    if (ans.has('oven') && a.oven === 'none') { M.oven = false; prefilled = true; }
     if (ans.has('kids')) {
       const k = clamp(+a.kids || 0, 0, 6);
       if (a.youngest === '12plus') { M.kids = 0; M.adults = clamp(M.adults + k, 1, 8); } else M.kids = k;
       prefilled = true;
     }
   }catch(e){}
+}
+function readFuel(){
+  try{ const s = JSON.parse(localStorage.getItem('bots-v1')); const o = s && s.A && (s.ans || []).includes('oven') ? s.A.oven : ''; FUEL = o === 'gas' || o === 'electric' ? o : ''; }catch(e){ FUEL = ''; }
 }
 
 /* ---------- maths ---------- */
@@ -909,9 +914,11 @@ function cost(ids, shop = M.shop){
 }
 const mealCost = id => R[id].ing.reduce((t, [k, q]) => { const I = itemAt(k); return t + q * fDin() / I.pk * I.p; }, 0);
 
+const canCook = id => (R[id].kit || [['hob']]).every(g => g.some(k => M[k]));
 function pool(){
   return Object.keys(R).filter(id => {
     const r = R[id];
+    if (!canCook(id)) return false;
     if (M.veg && r.p !== 'veg') return false;
     if (M.noPork && (r.p === 'pork')) return false;
     if (M.noFish && r.p === 'fish') return false;
@@ -1010,7 +1017,8 @@ function newPlan(){
   }
   const seed = 0;
   AVOID = new Set();
-  PL = days ? {days, seed, tried:{}} : null;
+  noPlan = !days;
+  if (days) PL = {days, seed, tried:{}};
   got = new Set(); recipeOpen = -1;
 }
 function swapDay(d){
@@ -1046,9 +1054,15 @@ function stepper(key, min, max, label, sub){
   return `<div class="pf-row"><div><b>${label}</b>${sub ? `<small>${sub}</small>` : ''}</div><div class="stepper"><button type="button" aria-label="Fewer ${label.toLowerCase()}" data-ms="${key}" data-d="-1" data-min="${min}" data-max="${max}">&minus;</button><output>${M[key]}</output><button type="button" aria-label="More ${label.toLowerCase()}" data-ms="${key}" data-d="1" data-min="${min}" data-max="${max}">+</button></div></div>`;
 }
 const tg = (key, label) => `<button type="button" class="chip" data-tg="${key}" aria-pressed="${!!M[key]}">${label}</button>`;
+function noPlanMsg(){
+  const n = new Set(pool()).size, diet = M.veg || M.noPork || M.noFish || M.mild;
+  const fix = `Tick anything else in your kitchen${diet ? ', or leave fewer things out' : ''}, and we'll try again.`;
+  return `<div class="help" role="alert" style="margin-top:0">${n ? `With what's ticked, we can only make ${n} of our dinners. That's not enough for a full week.` : `With what's ticked, there aren't any of our dinners you can make yet.`} ${fix}</div>`;
+}
 function renderForm(){
   const shops = Object.keys(SHOPS.p).map(k => `<button type="button" class="chip" data-shop="${k}" aria-pressed="${M.shop === k}">${SHOPS.p[k][2]}</button>`).join('');
   return `<div class="pform">
+    ${noPlan ? noPlanMsg() : ''}
     ${prefilled ? `<p class="toast" style="margin-bottom:4px">We've filled this in from your answers in the house. Change anything you like.</p>` : ''}
     <div class="field"><label for="m-budget">Your weekly food budget</label>
       <div class="money"><b>£</b><input id="m-budget" inputmode="decimal" value="${M.budget || ''}" placeholder="0" autocomplete="off"><em>a week</em></div>
@@ -1058,7 +1072,7 @@ function renderForm(){
     <div class="field"><span class="flabel">Who's eating?</span>
       ${stepper('adults', 1, 8, 'Adults and teens')}${stepper('kids', 0, 6, 'Children', 'Under 11')}</div>
     <div class="field"><span class="flabel">Where do you shop?</span><div class="chips">${shops}</div></div>
-    <div class="field"><span class="flabel">In your kitchen</span><div class="chips">${tg('slow', 'Slow cooker')}${tg('af', 'Air fryer')}</div></div>
+    <div class="field"><span class="flabel">In your kitchen</span><p class="hint" style="margin:2px 0 10px">Tick what you've got. We'll only pick dinners you can cook.</p><div class="chips">${tg('oven', 'Oven')}${tg('hob', 'Hob')}${tg('micro', 'Microwave')}${tg('slow', 'Slow cooker')}${tg('af', 'Air fryer')}</div></div>
     <div class="field"><span class="flabel">Anything to leave out?</span><div class="chips">${tg('veg', 'Vegetarian')}${tg('noPork', 'No pork')}${tg('noFish', 'No fish')}${tg('mild', 'Nothing spicy')}</div></div>
     <button class="btn primary" data-act="plan" style="width:100%">${PL ? 'Plan it again' : 'Plan my week'}</button>
   </div>`;
@@ -1077,22 +1091,39 @@ function notesFor(days){
   });
   return notes;
 }
+/* dinners a gadget would add to what they can cook now */
+function unlocks(k){
+  if (M[k]) return [];
+  const now = new Set(pool()); M[k] = true; const more = pool(); M[k] = false;
+  return more.filter(id => !now.has(id));
+}
+const orList = a => a.length > 1 ? a.slice(0, -1).join(', ') + ' or ' + a[a.length - 1] : (a[0] || '');
+const likeNames = ids => orList(ids.map(id => R[id].n).filter(n => !n.includes(',')).slice(0, 2).map(n => n.toLowerCase()));
 function kitCards(days){
-  const out = [], r = CONFIG.ELEC / 100;
+  const out = [], r = CONFIG.ELEC / 100, gas = FUEL === 'gas';
+  const afNew = unlocks('af'), slowNew = unlocks('slow');
   const slowN = days.filter(id => R[id].k === 'slow').length, afN = days.filter(id => R[id].k === 'af').length;
   const frz = days.find(id => R[id].frz);
-  if (slowN && !M.slow) {
+  if (!M.slow && slowNew.length >= 2) {
+    out.push(`<article class="item"><span class="pill great">More dinners</span><h3>Slow cooker</h3>
+      <p>A slow cooker would add ${slowNew.length} more dinners to your weeks, like ${esc(likeNames(slowNew))}. Put it on in the morning and tea's ready when you get in, for about ${Math.round(0.8 * CONFIG.ELEC)}p of electricity.</p>
+      <a class="shop" href="${amz('slow cooker 6.5 litre')}" target="_blank" rel="sponsored noopener">Find the best one <span aria-hidden="true">&nearr;</span></a></article>`);
+  } else if (slowN && !M.slow && M.oven && !gas) {
     const per = (1.94 - 0.8) * r, yr = per * slowN * 52, pb = Math.round(30 / yr * 12);
     out.push(`<article class="item"><span class="pill ${pb <= 18 ? 'great' : 'wait'}">${pb <= 18 ? 'Good buy' : 'Slow to pay back'}</span><h3>Slow cooker</h3>
       <p>${slowN} of this week's dinners ${slowN > 1 ? 'are' : 'is a'} slow cooker meal${slowN > 1 ? 's' : ''}. ${slowN > 1 ? 'They' : 'It'} work in the oven too, but a slow cooker uses about 60% less electricity for a stew, roughly ${Math.round(per * 100)}p less each time. Put it on in the morning and dinner's done when you get in.</p>
       <p class="slowline">At ${slowN} a week, a £30 slow cooker pays for itself in about <b>${pb} months</b>.</p>
       <a class="shop" href="${amz('slow cooker 6.5 litre')}" target="_blank" rel="sponsored noopener">Find the best one <span aria-hidden="true">&nearr;</span></a></article>`);
   }
-  if (afN && !M.af) {
+  if (!M.af && afNew.length >= 2) {
+    out.push(`<article class="item"><span class="pill great">More dinners</span><h3>Air fryer</h3>
+      <p>${M.oven ? '' : 'No oven? '}An air fryer would add ${afNew.length} more dinners to your weeks, like ${esc(likeNames(afNew))}. It's cheap to run too, about ${Math.round(0.5 * CONFIG.ELEC)}p a meal.</p>
+      <a class="shop" href="${amz('air fryer dual basket')}" target="_blank" rel="sponsored noopener">See top-rated picks <span aria-hidden="true">&nearr;</span></a></article>`);
+  } else if (afN && !M.af && M.oven && !gas) {
     const per = (1.0 - 0.5) * r, yr = per * afN * 52, pb = Math.round(60 / yr * 12);
     out.push(`<article class="item"><span class="pill wait">${pb <= 18 ? 'Good buy' : 'Only if you\'d use it a lot'}</span><h3>Air fryer</h3>
       <p>${afN} of this week's dinners can go in an air fryer. Compared with an electric oven it saves about ${Math.round(per * 100)}p a meal and it's quicker.</p>
-      <p class="slowline">On these meals alone it takes about <b>${pb >= 24 ? Math.round(pb / 12) + ' years' : pb + ' months'}</b> to pay for itself. Worth it if you'd use it most days. With a gas oven it barely saves anything.</p>
+      <p class="slowline">On these meals alone it takes about <b>${pb >= 24 ? Math.round(pb / 12) + ' years' : pb + ' months'}</b> to pay for itself. Worth it if you'd use it most days.${FUEL === 'electric' ? '' : ' With a gas oven it barely saves anything.'}</p>
       <a class="shop" href="${amz('air fryer dual basket')}" target="_blank" rel="sponsored noopener">See top-rated picks <span aria-hidden="true">&nearr;</span></a></article>`);
   }
   if (frz) {
@@ -1240,13 +1271,13 @@ document.addEventListener('click', e => {
   const b = t.closest('[data-budget]'); if (b) { keep(() => { M.budget = +b.dataset.budget; }); return; }
   const bs = t.closest('[data-basics]'); if (bs) { keep(() => { M.basics = bs.dataset.basics === '1'; }); return; }
   const sh = t.closest('[data-shop]'); if (sh) { keep(() => { M.shop = sh.dataset.shop; }); return; }
-  const tgB = t.closest('[data-tg]'); if (tgB) { keep(() => { M[tgB.dataset.tg] = !M[tgB.dataset.tg]; }); return; }
+  const tgB = t.closest('[data-tg]'); if (tgB) { keep(() => { M[tgB.dataset.tg] = !M[tgB.dataset.tg]; noPlan = false; }); return; }
   const sw = t.closest('[data-swap]'); if (sw) { keep(() => { swapDay(+sw.dataset.swap); }); return; }
   const rc = t.closest('[data-recipe]'); if (rc) { keep(() => { const d = +rc.dataset.recipe; recipeOpen = recipeOpen === d ? -1 : d; }); return; }
   const g = t.closest('[data-got]'); if (g) { keep(() => { const k = g.dataset.got; got.has(k) ? got.delete(k) : got.add(k); }); return; }
   const a = t.closest('[data-act]'); if (!a) return;
   const act = a.dataset.act;
-  if (act === 'plan') { const v = parseFloat(String(document.getElementById('m-budget')?.value || '').replace(/[^0-9.]/g, '')); if (v > 0) M.budget = v; newPlan(); view = 'plan'; render(); toTop(); }
+  if (act === 'plan') { const v = parseFloat(String(document.getElementById('m-budget')?.value || '').replace(/[^0-9.]/g, '')); if (v > 0) M.budget = v; newPlan(); view = noPlan ? 'form' : 'plan'; render(); toTop(); }
   if (act === 'new') { newPlan(); render(); toTop(); }
   if (act === 'edit') { view = 'form'; render(); toTop(); }
   if (act === 'copy') { const txt = listText(); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => { document.getElementById('copyMsg').textContent = 'Copied. Paste it into your notes or a message.'; }).catch(() => { document.getElementById('copyMsg').innerHTML = `<textarea readonly rows="8" style="width:100%;margin-top:8px">${esc(txt)}</textarea>`; }); }
@@ -1259,6 +1290,7 @@ document.addEventListener('click', e => { const b = e.target.closest('[data-pick
 setTheme(document.documentElement.dataset.theme || 'sunday');
 
 (function start(){
+  readFuel();
   const s = load();
   if (s && s.M) { M = Object.assign({...START}, s.M); PL = s.PL && s.PL.days && s.PL.days.every(id => R[id]) ? s.PL : null; got = new Set(s.got || []); view = PL ? (s.view || 'plan') : 'form'; }
   else prefill();
