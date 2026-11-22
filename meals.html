@@ -835,10 +835,10 @@ const R = {
     ing:[['wraps', 8], ['chopped', 1], ['mozz', 200], ['peppers', 1], ['mushrooms', 125], ['sweetcorn', 1], ['cucumber', 0.5]], cup:['puree', 'herbs'],
     st:['Heat the oven to 200°C (180°C fan). Mash the tomatoes with a spoon of purée and the herbs to make the sauce.', 'Spread a thin layer on each wrap and let everyone add their own toppings and cheese.', 'Bake on trays for 8 to 10 minutes until crisp, or 5 to 6 minutes in the air fryer. Serve with cucumber sticks.'], kf:1,
     fe:'Let them choose their own toppings. Kids are more likely to eat what they helped make.'},
-  friedrice:{kit:[['hob']], n:'Egg fried rice with peas and sweetcorn', p:'veg', b:'rice', m:20, sc:3,
-    ing:[['rice', 300], ['eggs', 4], ['peas', 250], ['sweetcorn', 1], ['onion', 75]], cup:['soy', 'oil', 'garlic'],
-    st:['Cook the rice and spread it out to steam dry. Day-old rice works best.', 'Fry the onion in a little oil, then add the peas, sweetcorn and garlic for 2 minutes.', 'Push it all to one side, scramble the eggs, then stir in the rice and soy sauce until piping hot.'], kf:1,
-    fe:'Peas and sweetcorn are the veg most kids will eat. Serve it in a bowl with a spoon.'},
+  friedrice:{kit:[['hob']], n:'Chicken fried rice with peas and sweetcorn', p:'chicken', b:'rice', m:25, sc:4, fake:1,
+    ing:[['chthigh', 400], ['rice', 300], ['eggs', 3], ['peas', 200], ['sweetcorn', 1], ['onion', 75]], cup:['soy', 'oil', 'garlic'],
+    st:['Cook the rice and spread it out to steam dry. Day-old rice works best.', 'Cut the chicken into small pieces and fry in a little oil for 6 to 8 minutes until cooked through.', 'Add the onion, peas, sweetcorn and garlic and fry for 2 minutes.', 'Push it all to one side, scramble the eggs, then stir in the rice and soy sauce until piping hot.'], kf:1,
+    fe:'Peas and sweetcorn are the veg most kids will eat. Go easy on the soy sauce in their bowls.'},
   frittata:{kit:[['hob']], n:'Potato, spinach and cheese frittata', p:'veg', b:'potato', m:35, sc:3,
     ing:[['eggs', 8], ['potato', 500], ['onion', 150], ['spinach', 120], ['cheese', 80], ['tomatoes', 3], ['cucumber', 0.5]], cup:['oil'],
     st:['Boil the sliced potatoes for 8 minutes and drain.', 'Fry the onion in a frying pan, then add the potatoes and spinach until it wilts.', 'Pour over the beaten eggs, sprinkle on the cheese and cook gently for 8 minutes. Finish under the grill if your pan can go under it, or put a lid on for 5 minutes, until set.', 'Serve in wedges with a tomato and cucumber salad.'],
@@ -1251,6 +1251,7 @@ function renderPlan(){
       <p class="split">${compare}</p>
       <a class="btn wa" href="${waLink(mealShareText(c.till))}" target="_blank" rel="noopener">${WA_ICON}Send to a friend</a>
     </div>
+    ${fussy() && PL.days.some(id => !R[id].kf) ? `<div class="help">To stay within ${gbp(M.budget)}, we've had to include ${PL.days.filter(id => !R[id].kf).length === 1 ? 'one dinner that isn\'t' : PL.days.filter(id => !R[id].kf).length + ' dinners that aren\'t'} a usual kids' favourite. Tap <b>Swap</b> to try another, or raise your budget a little for a fully kid-friendly week.</div>` : ''}
     ${over ? `<div class="help">This is the cheapest week we could find with your choices. ${M.basics ? 'Switching to "just dinners", or ' : ''}ticking off food you already have will bring it down.${tight ? ` If money is really tight this week, <a href="https://www.trussell.org.uk" target="_blank" rel="noopener">a food bank</a> or <a href="https://www.citizensadvice.org.uk" target="_blank" rel="noopener">Citizens Advice</a> can help, and your council may have emergency support.` : ''}</div>` : ''}
     <div class="pl-act"><button class="btn primary small" data-act="new">Give me a different week</button><button class="btn ghost small" data-act="edit">Change details</button></div>
     <div class="sec-h"><h2>Your dinners</h2><p>For ${people()} ${people() === 1 ? 'person' : 'people'}</p></div>
