@@ -370,6 +370,7 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 .themes-l{font-size:12px;font-weight:700;color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .halalpill{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--butter);color:var(--ink);border-radius:999px;padding:9px 16px;font:700 15px/1.2 var(--body);text-decoration:none;box-shadow:0 1px 0 rgba(0,0,0,.06)}.halalpill:hover{filter:brightness(.97)}
+.wb{margin-top:14px;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px 16px}.wb p{margin:0;font-size:16px;line-height:1.4}.wb-act{display:flex;gap:8px;margin-top:12px}.wb-act .btn{flex:1}
 </style>
 <!--track--><script>/* Where a visitor came from (a link like backofthesofa.uk/?from=tiktok), so Amazon can report earnings per app.
    Add a tracking ID below only once it exists in Amazon Associates; until then every link keeps the main ID. */
@@ -388,6 +389,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
   <section class="hero" id="top">
     <h1>Find the money your home is <span class="swoosh">wasting</span>.</h1>
     <p class="lede">Quick questions about your home, one tap each. We'll show you where your money's going, how to keep more of it, and what you might be owed.</p>
+    <div id="welcomeBack"></div>
     <a class="halalpill" href="meals.html?halal=1">New: halal meal plans with real prices <span aria-hidden="true">&rarr;</span></a>
     <a class="proof" href="#example" data-act="showex"><span class="k">OUR EXAMPLE FAMILY FOUND</span><b class="exTotal">£1,798 a year</b><span>in about three minutes. See how &rarr;</span></a>
     <button class="btn coral cta" data-act="totool">See what I could save <span aria-hidden="true">&darr;</span></button>
@@ -1361,6 +1363,7 @@ document.addEventListener('click', e => {
   const a = act.dataset.act;
   if (a === 'begin') begin();
   if (a === 'showex') { e.preventDefault(); const d = document.getElementById('example'); if (d) { d.open = true; scrollTo({top:d.getBoundingClientRect().top + scrollY - 12, behavior:'smooth'}); } return; }
+  if (a === 'wb-rooms') { view = 'idle'; render(); toTool(); return; }
   if (a === 'totool') { if (view === 'q' && mode === 'room') view = 'idle'; render(); toTool(); }
   if (a === 'bonus-go') { A.bonusChosen = 'yes'; lastWin = null; begin(roomDone('bills') ? 'food' : 'bills'); mode = 'all'; }
   if (a === 'results') { A.bonusChosen = 'no'; view = 'results'; lastWin = null; render(); const h = document.getElementById('results-top'); if (h) scrollTo({top:h.getBoundingClientRect().top + scrollY - 8, behavior:'smooth'}); }
@@ -1391,6 +1394,8 @@ function start(data){
   if (view === 'q') { const vq = visibleQs(); const nx = vq.find(i => !answered.has(QS[i].k)); qi = nx !== undefined ? nx : vq[0]; }
   if (view === 'results') printed = true;
   lastTotal = Math.round(compute(A).total);
+  const stored = load(), wbEl = document.getElementById('welcomeBack');
+  if (wbEl && stored && stored.A && ROOMS.some(r => roomDone(r.id)) && lastTotal >= 1) wbEl.innerHTML = `<div class="wb"><p><b>Welcome back.</b> Last time you found <b>${gbp(lastTotal)} a year</b>. Update a room, or check one you haven't done yet.</p><div class="wb-act"><button class="btn primary small" data-act="results">See my results</button><button class="btn ghost small" data-act="wb-rooms">Check a room</button></div></div>`;
   litBefore = new Set(ROOMS.filter(r => roomDone(r.id)).map(r => r.id));
   fillExample();
   render();

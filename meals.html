@@ -370,6 +370,7 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 .themes-l{font-size:12px;font-weight:700;color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .halalpill{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--butter);color:var(--ink);border-radius:999px;padding:9px 16px;font:700 15px/1.2 var(--body);text-decoration:none;box-shadow:0 1px 0 rgba(0,0,0,.06)}.halalpill:hover{filter:brightness(.97)}
+.wb{margin-top:14px;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px 16px}.wb p{margin:0;font-size:16px;line-height:1.4}.wb-act{display:flex;gap:8px;margin-top:12px}.wb-act .btn{flex:1}
 
 /* ---------- meal planner ---------- */
 .rate{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;margin-top:10px;font-size:13.5px;color:var(--ink-2)}
@@ -1655,7 +1656,7 @@ function newPlan(){
   const seed = 0;
   AVOID = new Set();
   noPlan = !days;
-  if (days) PL = {days, seed, tried:{}};
+  if (days) PL = {days, seed, tried:{}, at:Date.now()};
   got = new Set(); recipeOpen = -1;
 }
 function swapDay(d){
@@ -1823,7 +1824,8 @@ function renderPlan(){
     </article>`;
   }).join('');
   const SL = shopList(c);
-  return `<p class="printurl">Planned free at backofthesofa.uk</p><div class="sum ${over ? 'over' : ''}">
+  const stale = !PL.at || Date.now() - PL.at > 5 * 864e5;
+  return `<p class="printurl">Planned free at backofthesofa.uk</p>${stale ? `<div class="help"><b>New week?</b> Same settings, fresh dinners, and we'll bring back the ones you loved.<div class="pl-act" style="margin-top:10px"><button class="btn primary small" data-act="new">Plan this week</button><button class="btn ghost small" data-act="keepweek">Keep this plan</button></div></div>` : ''}<div class="sum ${over ? 'over' : ''}">
       <span class="k">YOUR WEEK AT ${esc(shopName().toUpperCase())}</span>
       <div class="big">${gbp(c.till, 2)}</div>
       <p class="line">${over ? `<b>${gbp(-under, 2)} over</b> your ${gbp(B)} budget` : `<b>${gbp(under, 2)} under</b> your ${gbp(B)} budget`} · about ${gbp(ppd, 2)} a person a day</p>
@@ -1927,6 +1929,7 @@ document.addEventListener('click', e => {
   if (act === 'sharelist') { navigator.share({title:'Shopping list', text:listText()}).catch(() => {}); }
   if (act === 'pic') makePic();
   if (act === 'print') window.print();
+  if (act === 'keepweek') { PL.at = Date.now(); render(); }
 });
 document.addEventListener('input', e => { if (e.target.id === 'm-budget') { const v = parseFloat(String(e.target.value).replace(/[^0-9.]/g, '')); M.budget = isNaN(v) ? 0 : v; document.querySelectorAll('[data-budget]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.budget === M.budget))); save(); } });
 function setTheme(t){ document.documentElement.dataset.theme = t; try{ localStorage.setItem('bots-theme', t); }catch(e){} document.querySelectorAll('[data-pick-theme]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.pickTheme === t))); }
@@ -1946,7 +1949,7 @@ function fromLink(){
   M.basics = q.get('basics') !== '0';
   M.veg = q.get('veg') === '1'; M.fussy = q.get('fussy') === '1'; M.halal = q.get('halal') === '1';
   const days = q.get('plan').split(',').filter(id => R[id]);
-  if (days.length === 7) { PL = {days, seed:0, tried:{}}; view = 'plan'; } else { PL = null; view = 'form'; }
+  if (days.length === 7) { PL = {days, seed:0, tried:{}, at:Date.now()}; view = 'plan'; } else { PL = null; view = 'form'; }
   got = new Set(); recipeOpen = -1;
   try{ history.replaceState(null, '', location.pathname); }catch(e){}
   return true;
