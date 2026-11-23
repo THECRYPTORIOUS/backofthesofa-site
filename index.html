@@ -369,6 +369,7 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 .themes button[aria-pressed="true"]{outline:2.5px solid var(--ink);outline-offset:2px}
 .themes-l{font-size:12px;font-weight:700;color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.halalpill{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--butter);color:var(--ink);border-radius:999px;padding:9px 16px;font:700 15px/1.2 var(--body);text-decoration:none;box-shadow:0 1px 0 rgba(0,0,0,.06)}.halalpill:hover{filter:brightness(.97)}
 </style>
 <!--track--><script>/* Where a visitor came from (a link like backofthesofa.uk/?from=tiktok), so Amazon can report earnings per app.
    Add a tracking ID below only once it exists in Amazon Associates; until then every link keeps the main ID. */
@@ -387,6 +388,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
   <section class="hero" id="top">
     <h1>Find the money your home is <span class="swoosh">wasting</span>.</h1>
     <p class="lede">Quick questions about your home, one tap each. We'll show you where your money's going, how to keep more of it, and what you might be owed.</p>
+    <a class="halalpill" href="meals.html?halal=1">New: halal meal plans with real prices <span aria-hidden="true">&rarr;</span></a>
     <a class="proof" href="#example" data-act="showex"><span class="k">OUR EXAMPLE FAMILY FOUND</span><b class="exTotal">£1,798 a year</b><span>in about three minutes. See how &rarr;</span></a>
     <button class="btn coral cta" data-act="totool">See what I could save <span aria-hidden="true">&darr;</span></button>
     <p class="checks-h">What we check</p>
@@ -396,7 +398,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
       <li><b>Energy and heating</b><span>Free fixes first</span></li>
       <li><b>Washing and drying</b><span>What it really costs</span></li>
       <li><b>Money you're owed</b><span>Benefits and discounts</span></li>
-      <li><b>Weekly meal plan</b><span>Dinners that fit your budget</span></li>
+      <li><b>Weekly meal plan</b><span>Dinners that fit your budget, halal and veggie too</span></li>
     </ul>
     <ol class="steps">
       <li><span class="num">1</span><div><b>Start with the big ones</b><span>Your bills and food shop are where most families find the most. Or do the whole house, one tap per question.</span></div></li>
@@ -409,7 +411,9 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Nothing leaves your phone</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Figures from Which?, the Energy Saving Trust and Ofgem</span>
     </div>
-    <a class="mealsbanner" href="meals.html"><b>New: meal planner</b><span>7 dinners and a shopping list that fit your budget</span><span aria-hidden="true" class="arr">&rarr;</span></a>
+    <a class="mealsbanner" href="meals.html"><b>New: meal planner</b><span>7 dinners and a shopping list that fit your budget. Halal and veggie options too.</span><span aria-hidden="true" class="arr">&rarr;</span></a>
+    <a class="mealsbanner" href="/black-friday/" style="margin-top:10px"><b>Black Friday: is it really a deal?</b><span>Five quick checks before you buy anything this week</span><span aria-hidden="true" class="arr">&rarr;</span></a>
+    <a class="mealsbanner" href="/christmas/" style="margin-top:10px"><b>Christmas on a budget planner</b><span>A budget for each person, kept on your phone</span><span aria-hidden="true" class="arr">&rarr;</span></a>
   </section>
 
   <section class="tool" id="tool" aria-label="Your home, room by room"></section>
@@ -428,7 +432,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
   <div class="in">
     <span class="brand"><svg aria-hidden="true"><use href="#bs-mark"/></svg><span>Back <i>of the</i> Sofa</span></span>
     <div><h3>How we make money</h3><p>Some links, like "Find the best one", go to Amazon. If you buy, we may earn a small commission at no extra cost to you. As an Amazon Associate, Back of the Sofa earns from qualifying purchases. It never changes your results: we tell you when something isn't worth buying.</p></div>
-    <p class="fine"><a href="index.html" style="color:inherit">Money finder</a> &middot; <a href="meals.html" style="color:inherit">Meal planner</a> &middot; <a href="/meal-plans/" style="color:inherit">Meal plans</a> &middot; <a href="/sim-deals/" style="color:inherit">SIM deals</a> &middot; <a href="/cooking-costs/" style="color:inherit">Cooking costs</a></p>
+    <p class="fine"><a href="index.html" style="color:inherit">Money finder</a> &middot; <a href="meals.html" style="color:inherit">Meal planner</a> &middot; <a href="/meal-plans/" style="color:inherit">Meal plans</a> &middot; <a href="/sim-deals/" style="color:inherit">SIM deals</a> &middot; <a href="/cooking-costs/" style="color:inherit">Cooking costs</a> &middot; <a href="/black-friday/" style="color:inherit">Black Friday checks</a> &middot; <a href="/free-trials/" style="color:inherit">Free trials</a> &middot; <a href="/habit-cost/" style="color:inherit">Habit cost</a> &middot; <a href="/christmas/" style="color:inherit">Christmas planner</a></p>
     <p class="fine">Estimates only, not financial advice. Electricity priced at the Ofgem cap for 1 October to 31 December 2026. Product prices are typical, not live.</p>
     <p class="fine">&copy; 2026 Back of the Sofa</p>
   </div>

@@ -369,8 +369,25 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 .themes button[aria-pressed="true"]{outline:2.5px solid var(--ink);outline-offset:2px}
 .themes-l{font-size:12px;font-weight:700;color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.halalpill{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--butter);color:var(--ink);border-radius:999px;padding:9px 16px;font:700 15px/1.2 var(--body);text-decoration:none;box-shadow:0 1px 0 rgba(0,0,0,.06)}.halalpill:hover{filter:brightness(.97)}
 
 /* ---------- meal planner ---------- */
+.rate{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;margin-top:10px;font-size:13.5px;color:var(--ink-2)}
+.rate .chip{min-height:34px;padding:6px 12px;font-size:13.5px;border-radius:999px}
+.rate .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.deliver h4{margin:0 0 6px;font:var(--dw3) 17px/1.25 var(--display)}
+.deliver .shop{margin-top:10px}
+.disc{font-size:12.5px;color:var(--ink-2);margin-top:10px}
+.printurl{display:none}
+@media print{
+  body *{visibility:hidden}
+  #planner,#planner *{visibility:visible}
+  #planner{position:absolute;left:0;top:0;width:100%}
+  #planner .pl-act,#planner .da,#planner .rate,#planner .deliver,#planner .kit,#planner .share-wrap,#planner .sl-act,#planner .btn,#planner .help,#planner .notice,#planner .tool-head .found,#planner #copyMsg,#planner .hint.tapnote{display:none!important}
+  #planner .printurl{display:block;font-size:13px;margin-bottom:8px}
+  #planner .day,#planner .card,#planner .aisle{break-inside:avoid}
+  #planner .sline .box{border:1.5px solid #333}
+}
 .pform{display:flex;flex-direction:column;gap:20px;padding:6px 4px 4px}
 .pform .quick{margin-top:2px} .pform .quick .chip{min-height:40px;padding:8px 12px}
 .pf-row{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--bg);border-radius:14px;padding:10px 12px}
@@ -482,7 +499,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
   <div class="in">
     <span class="brand"><svg aria-hidden="true"><use href="#bs-mark"/></svg><span>Back <i>of the</i> Sofa</span></span>
     <div><h3>How we make money</h3><p>Some links, like "Find the best one", go to Amazon. If you buy, we may earn a small commission at no extra cost to you. As an Amazon Associate, Back of the Sofa earns from qualifying purchases. It never changes your results: we tell you when something isn't worth buying.</p></div>
-    <p class="fine"><a href="/" style="color:inherit">Money finder</a> &middot; <a href="/meals.html" style="color:inherit">Meal planner</a> &middot; <a href="/meal-plans/" style="color:inherit">Meal plans</a> &middot; <a href="/sim-deals/" style="color:inherit">SIM deals</a> &middot; <a href="/cooking-costs/" style="color:inherit">Cooking costs</a></p>
+    <p class="fine"><a href="/" style="color:inherit">Money finder</a> &middot; <a href="/meals.html" style="color:inherit">Meal planner</a> &middot; <a href="/meal-plans/" style="color:inherit">Meal plans</a> &middot; <a href="/sim-deals/" style="color:inherit">SIM deals</a> &middot; <a href="/cooking-costs/" style="color:inherit">Cooking costs</a> &middot; <a href="/black-friday/" style="color:inherit">Black Friday checks</a> &middot; <a href="/free-trials/" style="color:inherit">Free trials</a> &middot; <a href="/habit-cost/" style="color:inherit">Habit cost</a> &middot; <a href="/christmas/" style="color:inherit">Christmas planner</a></p>
     <p class="fine">Estimates only, not financial advice. Electricity priced at the Ofgem cap for 1 October to 31 December 2026. Product prices are typical, not live.</p>
     <p class="fine">&copy; 2026 Back of the Sofa</p>
   </div>
