@@ -576,5 +576,6 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
 </footer>
 </div>
 <script>function setTheme(t){document.documentElement.dataset.theme=t;try{localStorage.setItem('bots-theme',t)}catch(e){}document.querySelectorAll('[data-pick-theme]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.pickTheme===t))})}document.addEventListener('click',function(e){var b=e.target.closest('[data-pick-theme]');if(b)setTheme(b.dataset.pickTheme)});try{setTheme(localStorage.getItem('bots-theme')||document.documentElement.dataset.theme||'sunday')}catch(e){}</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "16e323ecef0c435786197a66b5fd90a7"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
