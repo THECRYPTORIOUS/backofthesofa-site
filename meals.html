@@ -380,12 +380,19 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 .deliver .shop{margin-top:10px}
 .disc{font-size:12.5px;color:var(--ink-2);margin-top:10px}
 .printurl{display:none}
+.ptabs{position:sticky;top:0;z-index:5;display:flex;gap:8px;padding:10px 0;margin:16px 0 2px;background:var(--card)}
+.ptabs button{flex:1;appearance:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;min-height:48px;padding:10px 8px;font:700 15px/1.2 var(--body);cursor:pointer;white-space:nowrap}
+.ptabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ptabs button span{display:inline-block;margin-left:4px;font-size:12.5px;background:var(--butter);color:var(--ink);border-radius:999px;padding:1px 8px}
+.tabpane.hidden{display:none}
 @media print{
   body *{visibility:hidden}
   #planner,#planner *{visibility:visible}
   #planner{position:absolute;left:0;top:0;width:100%}
   #planner .pl-act,#planner .da,#planner .rate,#planner .deliver,#planner .kit,#planner .share-wrap,#planner .sl-act,#planner .btn,#planner .help,#planner .notice,#planner .tool-head .found,#planner #copyMsg,#planner .hint.tapnote{display:none!important}
   #planner .printurl{display:block;font-size:13px;margin-bottom:8px}
+  #planner .tabpane{display:block!important}
+  #planner .ptabs,#planner .golist{display:none!important}
   #planner .day,#planner .card,#planner .aisle{break-inside:avoid}
   #planner .sline .box{border:1.5px solid #333}
 }
@@ -475,7 +482,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
   <div class="in">
     <span class="brand"><svg aria-hidden="true"><use href="#bs-mark"/></svg><span>Back <i>of the</i> Sofa</span></span>
     <div><h3>How we make money</h3><p>Some links, like "Find the best one", go to Amazon. If you buy, we may earn a small commission at no extra cost to you. As an Amazon Associate, Back of the Sofa earns from qualifying purchases. It never changes your results: we tell you when something isn't worth buying.</p></div>
-    <p class="fine"><a href="index.html" style="color:inherit">Money finder</a> &middot; <a href="meals.html" style="color:inherit">Meal planner</a> &middot; <a href="/meal-plans/" style="color:inherit">Meal plans</a> &middot; <a href="/sim-deals/" style="color:inherit">SIM deals</a> &middot; <a href="/cooking-costs/" style="color:inherit">Cooking costs</a> &middot; <a href="/black-friday/" style="color:inherit">Black Friday checks</a> &middot; <a href="/free-trials/" style="color:inherit">Free trials</a> &middot; <a href="/habit-cost/" style="color:inherit">Habit cost</a> &middot; <a href="/christmas/" style="color:inherit">Christmas planner</a></p>
+    <p class="fine"><a href="index.html" style="color:inherit">Money finder</a> &middot; <a href="meals.html" style="color:inherit">Meal planner</a> &middot; <a href="/meal-plans/" style="color:inherit">Meal plans</a> &middot; <a href="/sim-deals/" style="color:inherit">SIM deals</a> &middot; <a href="/cooking-costs/" style="color:inherit">Cooking costs</a> &middot; <a href="/black-friday/" style="color:inherit">Sale checks</a> &middot; <a href="/free-trials/" style="color:inherit">Free trials</a> &middot; <a href="/habit-cost/" style="color:inherit">Habit cost</a> &middot; <a href="/christmas/" style="color:inherit">Christmas planner</a></p>
     <p class="fine">Estimates only, not financial advice. Electricity priced at the Ofgem cap for 1 October to 31 December 2026. Product prices are typical, not live.</p>
     <p class="fine">&copy; 2026 Back of the Sofa</p>
   </div>
@@ -1455,7 +1462,8 @@ const CONFIG = {
 };
 const waLink = t => 'https://wa.me/?text=' + encodeURIComponent(t);
 const WA_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.1.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>';
-const mealShareText = till => `This week I'm feeding ${people() === 1 ? 'myself' : people() + ' of us'} for ${gbp(till)} with this free meal planner. It does the shopping list for you too 👉 ${CONFIG.SHARE_URL}`;
+const planURL = () => PL ? `${CONFIG.SHARE_URL}/meals.html?plan=${PL.days.join(',')}&shop=${M.shop}&budget=${Math.round(M.budget)}&adults=${M.adults}&kids=${M.kids}&basics=${M.basics ? 1 : 0}${M.veg ? '&veg=1' : ''}${M.fussy ? '&fussy=1' : ''}${M.halal ? '&halal=1' : ''}&from=share` : CONFIG.SHARE_URL;
+const mealShareText = () => `Steal my meal plan for this week: 7 dinners with the recipes and the shopping list, all free 👉 ${planURL()}`;
 /* Which? cheapest supermarket, same basket at each. Update monthly: [no card, with free loyalty card, name] */
 const SHOPS = {month:'October 2026', items:62, p:{aldi:[111.66, 111.66, 'Aldi'], lidl:[112.33, 112.07, 'Lidl'], tesco:[125.09, 122.26, 'Tesco'], asda:[125.26, 125.26, 'Asda'], sainsburys:[130.79, 125.93, "Sainsbury's"], morrisons:[130.05, 128.96, 'Morrisons'], ocado:[135.47, 135.47, 'Ocado'], waitrose:[142.39, 142.39, 'Waitrose']}};
 
@@ -1512,6 +1520,7 @@ function itemAt(k, shop = M.shop){
   return {pk:I.pk, p:I.p * ratioOf(shop), n:I.n, sz:I.sz, real:false};
 }
 const shopName = () => (SHOPS.p[M.shop] || SHOPS.p.aldi)[2];
+const poss = n => /'s$/.test(n) ? n : /s$/.test(n) ? n + "'" : n + "'s";
 function basicsList(){
   const f = M.adults + 0.8 * M.kids, out = [];
   BASICS.forEach(([k, q]) => {
@@ -1564,6 +1573,8 @@ function valid(ids, relax){
   return true;
 }
 let JIT = {}, AVOID = new Set();
+let PTAB = (() => { try { return localStorage.getItem('bots-tab') || 'din'; } catch(e) { return 'din'; } })();
+const setTab = t => { PTAB = t; try { localStorage.setItem('bots-tab', t); } catch(e){} };
 let LIKES = (() => { try { return JSON.parse(localStorage.getItem('bots-likes')) || {}; } catch(e) { return {}; } })();
 const saveLikes = () => { try { localStorage.setItem('bots-likes', JSON.stringify(LIKES)); } catch(e){} };
 const amzUrl = path => 'https://www.amazon.co.uk' + path + (CONFIG.AMAZON_TAG ? (path.includes('?') ? '&' : '?') + 'tag=' + encodeURIComponent(CONFIG.AMAZON_TAG) : '');
@@ -1657,6 +1668,7 @@ function newPlan(){
   AVOID = new Set();
   noPlan = !days;
   if (days) PL = {days, seed, tried:{}, at:Date.now()};
+  if (days) setTab('din');
   got = new Set(); recipeOpen = -1;
 }
 function swapDay(d){
@@ -1831,27 +1843,36 @@ function renderPlan(){
       <p class="line">${over ? `<b>${gbp(-under, 2)} over</b> your ${gbp(B)} budget` : `<b>${gbp(under, 2)} under</b> your ${gbp(B)} budget`} · about ${gbp(ppd, 2)} a person a day</p>
       <p class="split">${M.basics ? `Dinners about ${gbp(c.din)}, breakfast and lunch about ${gbp(c.bas)}` : `Seven dinners for ${people()}`}${c.till - c.eaten >= 1 ? `, plus about ${gbp(c.till - c.eaten)} of food left for next week, like rice and pasta.` : '.'}</p>
       <p class="split">${compare}</p>
-      <a class="btn wa" href="${waLink(mealShareText(c.till))}" target="_blank" rel="noopener">${WA_ICON}Send to a friend</a>
+      <a class="btn wa" data-act="sendfriend" href="${waLink(mealShareText(c.till))}" target="_blank" rel="noopener">${WA_ICON}Send to a friend</a>
     </div>
     ${fussy() && PL.days.some(id => !R[id].kf) ? `<div class="help">To stay within ${gbp(M.budget)}, we've had to include ${PL.days.filter(id => !R[id].kf).length === 1 ? 'one dinner that isn\'t' : PL.days.filter(id => !R[id].kf).length + ' dinners that aren\'t'} a usual kids' favourite. Tap <b>Swap</b> to try another, or raise your budget a little for a fully kid-friendly week.</div>` : ''}
     ${over ? `<div class="help">This is the cheapest week we could find with your choices. ${M.basics ? 'Switching to "just dinners", or ' : ''}ticking off food you already have will bring it down.${tight ? ` If money is really tight this week, <a href="https://www.trussell.org.uk" target="_blank" rel="noopener">a food bank</a> or <a href="https://www.citizensadvice.org.uk" target="_blank" rel="noopener">Citizens Advice</a> can help, and your council may have emergency support.` : ''}</div>` : ''}
-    <div class="pl-act"><button class="btn primary small" data-act="new">Give me a different week</button><button class="btn ghost small" data-act="edit">Change details</button><button class="btn ghost small" data-act="print">Print for the fridge</button></div>
+    <div class="ptabs" role="tablist" aria-label="This week"><button type="button" role="tab" data-tab="din" aria-selected="${PTAB !== 'list'}">Dinners</button><button type="button" role="tab" data-tab="list" aria-selected="${PTAB === 'list'}">Shopping list <span>${(SL.html.match(/class="sline/g) || []).length}</span></button></div>
+    <div class="tabpane${PTAB === 'list' ? ' hidden' : ''}" data-pane="din">
     <div class="sec-h"><h2>Your dinners</h2><p>For ${people()} ${people() === 1 ? 'person' : 'people'}</p></div>
     <div class="stack">${days}</div>
+    <div class="pl-act" style="margin-top:14px"><button class="btn primary small" data-act="new">Give me a different week</button><button class="btn ghost small" data-act="edit">Change details</button></div>
+    <button type="button" class="btn ghost small golist" data-tab="list" style="width:100%;margin-top:10px">See the shopping list</button>
+    ${kitCards(PL.days)}
+    <div class="share-wrap"><div class="sec-h"><h2>Steal my plan</h2></div>
+    <div class="card share"><p class="hint" style="margin:0 0 12px">Send your week to a friend. One tap and they get your dinners, the recipes and the shopping list.</p><a class="btn wa" data-act="sendfriend" style="margin-top:0" href="${waLink(mealShareText())}" target="_blank" rel="noopener">${WA_ICON}Send to a friend</a>
+      <p class="hint" style="margin-top:14px">Or make a picture for your Instagram or Facebook story.</p>
+      <label class="chk" style="display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14.5px"><input type="checkbox" id="picCost" style="width:20px;height:20px;accent-color:var(--ink)"> Show how much under budget I came in</label>
+      <button class="btn primary small" style="width:100%;margin-top:12px" data-act="pic">Make my picture</button><div id="picOut"></div></div></div>
+    </div>
+    <div class="tabpane${PTAB === 'list' ? '' : ' hidden'}" data-pane="list">
     <div class="sec-h"><h2>Shopping list</h2><p>${esc(shopName())}</p></div>
     ${SL.html}
+    <button type="button" class="btn ghost small" data-act="print" style="width:100%;margin-top:10px">Print for the fridge</button>
     ${deliverCard()}
-    ${kitCards(PL.days)}
-    <div class="share-wrap"><div class="sec-h"><h2>Share your week</h2></div>
-    <div class="card share"><a class="btn wa" style="margin-top:0" href="${waLink(mealShareText(c.till))}" target="_blank" rel="noopener">${WA_ICON}Send to a friend</a>
-      <p class="hint" style="margin-top:14px">Or make a picture of your week for Instagram, Facebook or the family group chat.</p>
-      <button class="btn primary small" style="width:100%;margin-top:12px" data-act="pic">Make my picture</button><div id="picOut"></div></div></div>
-    <p class="notice">${REAL_SHOPS.includes(M.shop) ? `${realN === allN ? 'Every item is priced' : `${realN} of ${allN} items are priced`} from ${esc(shopName())}'s own website${M.shop === 'aldi' ? `, checked ${CONFIG.PRICES}` : `, checked ${SHOP_CHECKED}`}, using normal shelf prices rather than loyalty or offer prices.${realN < allN ? ` The rest are estimated from Which?'s ${SHOPS.month} price check.` : ''}` : `${esc(shopName())} prices are estimated from Aldi's prices and Which?'s ${SHOPS.month} price check of the same basket at each supermarket.`} Totals are a guide: prices change and offers vary. Snacks, drinks and household bits aren't included.</p>`;
+    </div>
+    <p class="notice">${REAL_SHOPS.includes(M.shop) ? `${realN === allN ? 'Every item is priced' : `${realN} of ${allN} items are priced`} from ${esc(poss(shopName()))} own website${M.shop === 'aldi' ? `, checked ${CONFIG.PRICES}` : `, checked ${SHOP_CHECKED}`}, using normal shelf prices rather than loyalty or offer prices.${realN < allN ? ` The rest are estimated from Which?'s ${SHOPS.month} price check.` : ''}` : `${esc(shopName())} prices are estimated from Aldi's prices and Which?'s ${SHOPS.month} price check of the same basket at each supermarket.`} Totals are a guide: prices change and offers vary. Snacks, drinks and household bits aren't included.</p>`;
 }
 function render(){
   const el = root();
   if (view === 'plan' && PL) el.innerHTML = `<div class="tool-head"><h2>This week</h2><span class="found">${gbp(cost(PL.days).till)} for ${people()}</span></div>${renderPlan()}`;
   else el.innerHTML = `<div class="tool-head"><h2>Plan your week</h2><span class="found">7 dinners</span></div>${renderForm()}`;
+  if (view === 'plan' && PL && drawPic.key !== PL.days.join()) setTimeout(preparePic, 400);
   save();
 }
 const toTop = () => { const y = root().getBoundingClientRect().top + scrollY - 8; scrollTo({top:y, behavior:'smooth'}); };
@@ -1880,31 +1901,66 @@ async function drawBrand(x, cx, by, size){
   segs.forEach(sg => { x.font = sg[1]; x.fillStyle = sg[2]; x.fillText(sg[0], left, by); left += sg[3]; });
   x.textAlign = 'center';
 }
-async function makePic(){
-  const c = cost(PL.days);
+async function drawPic(showCost){
+  const c = cost(PL.days), under = M.budget - c.till;
   const W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const x = cv.getContext('2d');
-  try { await Promise.all([document.fonts.load('800 80px "Fraunces"'), document.fonts.load('italic 500 80px "Fraunces"'), document.fonts.load('500 40px "DM Mono"'), document.fonts.load('600 40px "Figtree"')]); } catch(e){}
+  try { await Promise.all([document.fonts.load('800 80px "Fraunces"'), document.fonts.load('italic 500 80px "Fraunces"'), document.fonts.load('500 40px "DM Mono"'), document.fonts.load('600 40px "Figtree"'), document.fonts.load('700 40px "Figtree"')]); } catch(e){}
   x.fillStyle = '#233047'; x.fillRect(0, 0, W, H);
   x.textAlign = 'center'; await drawBrand(x, W / 2, 175, 58);
-  const px = 110, pw = W - 220, py = 250, ph = 1380;
+  const px = 110, pw = W - 220, py = 250, ph = 1390;
   x.fillStyle = '#FFFFFF'; x.beginPath(); x.roundRect ? x.roundRect(px, py, pw, ph, 40) : x.rect(px, py, pw, ph); x.fill();
-  x.fillStyle = '#596579'; x.font = '500 34px "DM Mono", monospace'; x.fillText('THIS WEEK WE FED', W / 2, py + 100);
-  x.fillStyle = '#233047'; x.font = '800 96px "Fraunces", sans-serif';
-  x.fillText(`${people()} ${people() === 1 ? 'person' : 'people'} for`, W / 2, py + 215);
-  const big = gbp(c.till); x.font = '700 190px "Figtree", sans-serif';
-  const bw = x.measureText(big).width; x.fillStyle = '#FFD45E'; x.fillRect(W / 2 - bw / 2 - 16, py + 330, bw + 32, 80);
-  x.fillStyle = '#233047'; x.fillText(big, W / 2, py + 395);
-  x.textAlign = 'left'; let y = py + 520;
+  x.fillStyle = '#C9604F'; x.font = '500 34px "DM Mono", monospace'; x.fillText('STEAL MY MEAL PLAN', W / 2, py + 100);
+  x.fillStyle = '#233047'; x.font = '800 78px "Fraunces", sans-serif'; x.fillText("This week's dinners", W / 2, py + 200);
+  const tags = [`For ${people()}`, shopName(), M.halal ? 'Halal' : '', M.veg ? 'Veggie' : '', M.fussy ? 'Fussy-kid friendly' : ''].filter(Boolean).join(' · ');
+  x.fillStyle = '#596579'; x.font = '600 34px "Figtree", sans-serif'; x.fillText(tags, W / 2, py + 262);
+  let y = py + 370;
+  if (showCost) {
+    const win = under >= 1 ? `${gbp(under)} under budget` : `${gbp(c.till)} for the week`;
+    x.font = '700 50px "Figtree", sans-serif'; const ww = x.measureText(win).width;
+    x.fillStyle = '#FFD45E'; x.fillRect(W / 2 - ww / 2 - 22, py + 300, ww + 44, 72);
+    x.fillStyle = '#233047'; x.fillText(win, W / 2, py + 354); y = py + 470;
+  }
+  const wrap = (t, w) => { const words = t.split(' '), lines = []; let cur = '';
+    words.forEach(wd => { const tryL = cur ? cur + ' ' + wd : wd; if (x.measureText(tryL).width <= w) cur = tryL; else { if (cur) lines.push(cur); cur = wd; } });
+    if (cur) lines.push(cur);
+    if (lines.length > 2) { let l2 = lines[1]; while (x.measureText(l2 + '…').width > w && l2.length > 4) l2 = l2.slice(0, -1); return [lines[0], l2.trim() + '…']; }
+    return lines; };
+  x.textAlign = 'left';
   PL.days.forEach((id, d) => {
+    x.font = '600 38px "Figtree", sans-serif'; const lines = wrap(R[id].n, pw - 260);
     x.fillStyle = '#C9604F'; x.font = '500 34px "DM Mono", monospace'; x.fillText(DAYS[d].toUpperCase(), px + 70, y);
-    x.fillStyle = '#233047'; x.font = '600 36px "Figtree", sans-serif';
-    let n = R[id].n; while (x.measureText(n).width > pw - 260 && n.length > 10) n = n.slice(0, -2); if (n !== R[id].n) n = n.trim() + '…';
-    x.fillText(n, px + 200, y); y += 112;
+    x.fillStyle = '#233047'; x.font = '600 38px "Figtree", sans-serif';
+    lines.forEach((ln, i) => x.fillText(ln, px + 200, y + i * 48));
+    y += 48 * lines.length + (showCost ? 44 : 56);
   });
-  x.textAlign = 'center'; x.fillStyle = '#FFFFFF'; x.font = '700 56px "Fraunces", sans-serif';
-  x.fillText('Plan your week free', W / 2, 1740); x.fillStyle = '#FFD45E'; x.font = '500 44px "DM Mono", monospace'; x.fillText(CONFIG.SITE, W / 2, 1815);
-  document.getElementById('picOut').innerHTML = `<img src="${cv.toDataURL('image/png')}" alt="Our week of dinners for ${people()} people cost ${gbp(c.till)}"><p class="hint" style="margin-top:10px">Press and hold the picture to save it.</p>`;
+  x.textAlign = 'center'; x.fillStyle = '#FFFFFF'; x.font = '700 50px "Fraunces", sans-serif';
+  x.fillText('Recipes & shopping list free at', W / 2, 1745); x.fillStyle = '#FFD45E'; x.font = '500 48px "DM Mono", monospace'; x.fillText(CONFIG.SITE, W / 2, 1822);
+  return cv;
+}
+async function preparePic(){ try { if (!PL) return; const cv = await drawPic(false); drawPic.blob = await new Promise(r => cv.toBlob(r, 'image/png')); drawPic.key = PL.days.join(); } catch(e){} }
+async function makePic(){
+  const cv = await drawPic(document.getElementById('picCost')?.checked);
+  const url = cv.toDataURL('image/png'), out = document.getElementById('picOut');
+  out.innerHTML = `<img src="${url}" alt="My week of dinners: ${PL.days.map(id => esc(R[id].n)).join(', ')}"><div class="pl-act" style="margin-top:10px"><button class="btn primary small" data-act="sharepic">Share picture</button><a class="btn ghost small" href="${url}" download="my-meal-plan.png">Save picture</a></div><p class="hint" style="margin-top:8px">Add the link in your story so friends can steal your plan: ${esc(planURL().replace('https://', ''))}</p>`;
+  makePic.blob = await new Promise(r => cv.toBlob(r, 'image/png'));
+}
+function shareFriend(e){
+  const blob = drawPic.blob && drawPic.key === PL.days.join() ? drawPic.blob : null;
+  if (!blob || !navigator.canShare) return;
+  const file = new File([blob], 'my-meal-plan.png', {type:'image/png'});
+  if (!navigator.canShare({files:[file]})) return;
+  e.preventDefault();
+  navigator.share({files:[file], text:mealShareText()}).catch(() => {});
+}
+async function sharePic(){
+  const blob = makePic.blob; if (!blob) return;
+  const file = new File([blob], 'my-meal-plan.png', {type:'image/png'});
+  try {
+    if (navigator.canShare && navigator.canShare({files:[file]})) await navigator.share({files:[file], text:mealShareText()});
+    else if (navigator.share) await navigator.share({text:mealShareText()});
+    else window.open(waLink(mealShareText()), '_blank');
+  } catch(e){}
 }
 
 /* ---------- events ---------- */
@@ -1917,17 +1973,20 @@ document.addEventListener('click', e => {
   const sh = t.closest('[data-shop]'); if (sh) { keep(() => { M.shop = sh.dataset.shop; }); return; }
   const tgB = t.closest('[data-tg]'); if (tgB) { keep(() => { M[tgB.dataset.tg] = !M[tgB.dataset.tg]; noPlan = false; }); return; }
   const sw = t.closest('[data-swap]'); if (sw) { keep(() => { swapDay(+sw.dataset.swap); }); return; }
+  const tb = t.closest('[data-tab]'); if (tb) { setTab(tb.dataset.tab); document.querySelectorAll('[data-pane]').forEach(p => p.classList.toggle('hidden', p.dataset.pane !== PTAB)); document.querySelectorAll('.ptabs [data-tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === PTAB)); const bar = document.querySelector('.ptabs'), pane = document.querySelector(`[data-pane="${PTAB}"]`); if (bar && pane) { const y = pane.getBoundingClientRect().top + scrollY - bar.offsetHeight - 10; if (scrollY > y || tb.classList.contains('golist')) scrollTo({top:y, behavior:'smooth'}); } return; }
   const lk = t.closest('[data-like]'); if (lk) { keep(() => { const id = lk.dataset.like, v = +lk.dataset.v; if (LIKES[id] === v) delete LIKES[id]; else LIKES[id] = v; saveLikes(); }); return; }
   const rc = t.closest('[data-recipe]'); if (rc) { keep(() => { const d = +rc.dataset.recipe; recipeOpen = recipeOpen === d ? -1 : d; }); return; }
   const g = t.closest('[data-got]'); if (g) { keep(() => { const k = g.dataset.got; got.has(k) ? got.delete(k) : got.add(k); }); return; }
   const a = t.closest('[data-act]'); if (!a) return;
   const act = a.dataset.act;
+  if (act === 'sendfriend') { shareFriend(e); return; }
   if (act === 'plan') { const v = parseFloat(String(document.getElementById('m-budget')?.value || '').replace(/[^0-9.]/g, '')); if (v > 0) M.budget = v; newPlan(); view = noPlan ? 'form' : 'plan'; render(); toTop(); }
   if (act === 'new') { newPlan(); render(); toTop(); }
   if (act === 'edit') { view = 'form'; render(); toTop(); }
   if (act === 'copy') { const txt = listText(); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => { document.getElementById('copyMsg').textContent = 'Copied. Paste it into your notes or a message.'; }).catch(() => { document.getElementById('copyMsg').innerHTML = `<textarea readonly rows="8" style="width:100%;margin-top:8px">${esc(txt)}</textarea>`; }); }
   if (act === 'sharelist') { navigator.share({title:'Shopping list', text:listText()}).catch(() => {}); }
   if (act === 'pic') makePic();
+  if (act === 'sharepic') sharePic();
   if (act === 'print') window.print();
   if (act === 'keepweek') { PL.at = Date.now(); render(); }
 });

@@ -414,7 +414,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Figures from Which?, the Energy Saving Trust and Ofgem</span>
     </div>
     <a class="mealsbanner" href="meals.html"><b>New: meal planner</b><span>7 dinners and a shopping list that fit your budget. Halal and veggie options too.</span><span aria-hidden="true" class="arr">&rarr;</span></a>
-    <a class="mealsbanner" href="/black-friday/" style="margin-top:10px"><b>Black Friday: is it really a deal?</b><span>Five quick checks before you buy anything this week</span><span aria-hidden="true" class="arr">&rarr;</span></a>
+    <a class="mealsbanner" href="/black-friday/" style="margin-top:10px" data-until="2026-12-01T00:00:00"><b>Black Friday: is it really a deal?</b><span>Five quick checks before you buy anything this week</span><span aria-hidden="true" class="arr">&rarr;</span></a>
     <a class="mealsbanner" href="/christmas/" style="margin-top:10px"><b>Christmas on a budget planner</b><span>A budget for each person, kept on your phone</span><span aria-hidden="true" class="arr">&rarr;</span></a>
   </section>
 
@@ -434,7 +434,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
   <div class="in">
     <span class="brand"><svg aria-hidden="true"><use href="#bs-mark"/></svg><span>Back <i>of the</i> Sofa</span></span>
     <div><h3>How we make money</h3><p>Some links, like "Find the best one", go to Amazon. If you buy, we may earn a small commission at no extra cost to you. As an Amazon Associate, Back of the Sofa earns from qualifying purchases. It never changes your results: we tell you when something isn't worth buying.</p></div>
-    <p class="fine"><a href="index.html" style="color:inherit">Money finder</a> &middot; <a href="meals.html" style="color:inherit">Meal planner</a> &middot; <a href="/meal-plans/" style="color:inherit">Meal plans</a> &middot; <a href="/sim-deals/" style="color:inherit">SIM deals</a> &middot; <a href="/cooking-costs/" style="color:inherit">Cooking costs</a> &middot; <a href="/black-friday/" style="color:inherit">Black Friday checks</a> &middot; <a href="/free-trials/" style="color:inherit">Free trials</a> &middot; <a href="/habit-cost/" style="color:inherit">Habit cost</a> &middot; <a href="/christmas/" style="color:inherit">Christmas planner</a></p>
+    <p class="fine"><a href="index.html" style="color:inherit">Money finder</a> &middot; <a href="meals.html" style="color:inherit">Meal planner</a> &middot; <a href="/meal-plans/" style="color:inherit">Meal plans</a> &middot; <a href="/sim-deals/" style="color:inherit">SIM deals</a> &middot; <a href="/cooking-costs/" style="color:inherit">Cooking costs</a> &middot; <a href="/black-friday/" style="color:inherit">Sale checks</a> &middot; <a href="/free-trials/" style="color:inherit">Free trials</a> &middot; <a href="/habit-cost/" style="color:inherit">Habit cost</a> &middot; <a href="/christmas/" style="color:inherit">Christmas planner</a></p>
     <p class="fine">Estimates only, not financial advice. Electricity priced at the Ofgem cap for 1 October to 31 December 2026. Product prices are typical, not live.</p>
     <p class="fine">&copy; 2026 Back of the Sofa</p>
   </div>
@@ -1404,5 +1404,6 @@ window.claude?.hot?.snapshot?.(() => ({A, view, qi, mode, rv, ans:[...answered]}
 window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
 
 </script>
+<script>(function(){var n=new Date();document.querySelectorAll('[data-until]').forEach(function(e){if(n>=new Date(e.getAttribute('data-until')))e.remove()});document.querySelectorAll('[data-from]').forEach(function(e){if(n>=new Date(e.getAttribute('data-from')))e.hidden=false;else e.remove()})})();</script>
 </body>
 </html>
