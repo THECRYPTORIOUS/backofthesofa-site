@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="p:domain_verify" content="7e2c7de85c367f4eea8b39620875f018"/>
 <title>Back of the Sofa: find the money your home is wasting</title>
 <!--meta-->
 <meta name="description" content="Quick questions about your home, one tap each. See where your money's going, how to keep more of it, and what you might be owed. Free, with no sign-up.">
@@ -402,7 +403,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
       <li><span>3</span>See how much you could keep a year</li>
     </ol>
     <a class="halalpill" href="meals.html?halal=1">New: halal meal plans with real prices <span aria-hidden="true">&rarr;</span></a>
-    <a class="proof" href="#example" data-act="showex"><span class="k">OUR EXAMPLE FAMILY FOUND</span><b class="exTotal">£1,798 a year</b><span>in about 5 minutes. See how &rarr;</span></a>
+    <a class="proof" href="#example" data-act="showex"><span class="k">OUR EXAMPLE FAMILY FOUND</span><b class="exTotal">£1,799 a year</b><span>in about 5 minutes. See how &rarr;</span></a>
     <button class="btn coral cta" data-act="totool">Start my free check <span aria-hidden="true">&darr;</span></button>
   </section>
 
@@ -422,7 +423,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
 
   <section class="faq stack" aria-label="Common questions">
     <h2>Common questions</h2>
-    <details id="example"><summary>Who's the example family?</summary><p class="ans">Two adults and two children (the youngest is at primary school), both parents working. They tumble dry 5 loads a week in a condenser dryer, cook 4 dinners a week in an electric oven, have an electric shower, two phones on EE past their contract at £55 a month, BT broadband past its contract, and a £125 weekly shop at Tesco without a Clubcard. The free changes, money-saving buys, bills and food shop add up to <b class="exTotal">£1,798 a year</b>. That's before any money they might be owed. Your total depends on your answers.</p></details>
+    <details id="example"><summary>Who's the example family?</summary><p class="ans">Two adults and two children (the youngest is at primary school), both parents working. They tumble dry 5 loads a week in a condenser dryer, cook 4 dinners a week in an electric oven, have an electric shower, two phones on EE past their contract at £55 a month, BT broadband past its contract, and a £125 weekly shop at Tesco without a Clubcard. The free changes, money-saving buys, bills and food shop add up to <b class="exTotal">£1,799 a year</b>. That's before any money they might be owed. Your total depends on your answers.</p></details>
     <details><summary>Is it really free?</summary><p class="ans">Yes. There's no sign-up, no email and nothing to pay. If you buy something through one of our Amazon links, Amazon may pay us a small commission. It never costs you more, and it never changes what we suggest. That's why we'll tell you when something isn't worth buying.</p></details>
     <details><summary>What happens to my answers?</summary><p class="ans">They stay on your phone. We never see them, and there's no account to make. To see how many people visit, we count page views with Cloudflare Web Analytics. It uses no cookies and doesn't identify you.</p></details>
     <details><summary>Where do the numbers come from?</summary><p class="ans">Which? appliance tests, the Energy Saving Trust, Nesta, Ofgem's price cap and GOV.UK. Every figure is listed under "How we worked it out" in your results.</p></details>
@@ -1291,7 +1292,7 @@ const tool = document.getElementById('tool');
 const ICON_BILLS = `<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="11" width="22" height="16" rx="2" fill="#fff" stroke="currentColor" stroke-width="2.4"/><path d="M4 11l11 8 11-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><rect x="25" y="8" width="11" height="22" rx="3" fill="#fff" stroke="currentColor" stroke-width="2.4"/><circle cx="30.5" cy="26" r="1.6" fill="currentColor"/></svg>`;
 const ICON_FOOD = `<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 9h5l5 16h17l4-11H11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="31" r="2.6" fill="currentColor"/><circle cx="29" cy="31" r="2.6" fill="currentColor"/><circle cx="24" cy="10" r="4.5" fill="var(--coin)" stroke="currentColor" stroke-width="2"/></svg>`;
 const shareText = c => c.total >= 20 ? `I just found ${gbp(c.total)} a year I could save with this free home money check. Took me a few minutes, worth a go 👉 ${CONFIG.SHARE_URL}` : `This free home money check shows where your money's going, room by room, and what you might be owed 👉 ${CONFIG.SHARE_URL}`;
-function fillExample(){ const t = Math.floor(compute(exFam()).total); document.querySelectorAll('.exTotal').forEach(el => el.textContent = gbp(t) + ' a year'); }
+function fillExample(){ const t = Math.round(compute(exFam()).total); document.querySelectorAll('.exTotal').forEach(el => el.textContent = gbp(t) + ' a year'); }
 function render(){
   const c = compute(A), tot = Math.round(c.total);
   const nowRoom = view === 'q' ? QS[qi].r : view === 'bonus' ? 'bills' : null;
