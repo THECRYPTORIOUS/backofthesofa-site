@@ -135,6 +135,12 @@ p{margin:0}
 .checks span{display:block;font-size:12.5px;line-height:1.3;color:var(--ink-2);margin-top:3px}
 .hero .cta{margin-top:14px}
 .hero .proof{margin-top:14px}
+.how{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:9px}
+.how li{display:flex;align-items:center;gap:11px;font:600 16.5px/1.3 var(--body);color:var(--ink)}
+.how li span{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--num-bg);color:var(--ink);font:var(--dw) 16px/1 var(--display)}
+.more{padding:22px 0 4px}.more .trust{margin-top:0}
+#welcomeBack .wb{margin-top:16px}
+.hero.returning .lede,.hero.returning .how,.hero.returning .proof,.hero.returning .cta{display:none}
 .trust{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .trust span{display:inline-flex;align-items:center;gap:6px;font:600 13px var(--body);background:var(--card);border:1px solid var(--line);padding:7px 11px;border-radius:999px}
 .trust svg{width:15px;height:15px;color:var(--good)}
@@ -388,25 +394,21 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
 
   <section class="hero" id="top">
     <h1>Find the money your home is <span class="swoosh">wasting</span>.</h1>
-    <p class="lede">Quick questions about your home, one tap each. We'll show you where your money's going, how to keep more of it, and what you might be owed.</p>
     <div id="welcomeBack"></div>
-    <a class="halalpill" href="meals.html?halal=1">New: halal meal plans with real prices <span aria-hidden="true">&rarr;</span></a>
-    <a class="proof" href="#example" data-act="showex"><span class="k">OUR EXAMPLE FAMILY FOUND</span><b class="exTotal">£1,798 a year</b><span>in about three minutes. See how &rarr;</span></a>
-    <button class="btn coral cta" data-act="totool">See what I could save <span aria-hidden="true">&darr;</span></button>
-    <p class="checks-h">What we check</p>
-    <ul class="checks" aria-label="What we check">
-      <li><b>Phones and broadband</b><span>Today's cheapest deals</span></li>
-      <li><b>Food shop</b><span>The cheapest supermarket for you</span></li>
-      <li><b>Energy and heating</b><span>Free fixes first</span></li>
-      <li><b>Washing and drying</b><span>What it really costs</span></li>
-      <li><b>Money you're owed</b><span>Benefits and discounts</span></li>
-      <li><b>Weekly meal plan</b><span>Dinners that fit your budget, halal and veggie too</span></li>
-    </ul>
-    <ol class="steps">
-      <li><span class="num">1</span><div><b>Start with the big ones</b><span>Your bills and food shop are where most families find the most. Or do the whole house, one tap per question.</span></div></li>
-      <li><span class="num">2</span><div><b>Watch your savings add up</b><span>Each room shows what you could save: free changes first, then today's cheapest deals and the buys that pay for themselves.</span></div></li>
-      <li><span class="num">3</span><div><b>See what you might be owed</b><span>Like Child Benefit, Marriage Allowance, 25% off council tax, or the £100 energy payment from January.</span></div></li>
+    <p class="lede">A free money check for your home. It takes about 5 minutes, there's no sign-up, and nothing leaves your phone.</p>
+    <ol class="how" aria-label="How it works">
+      <li><span>1</span>Tap a room in the house below</li>
+      <li><span>2</span>Answer a few one-tap questions</li>
+      <li><span>3</span>See how much you could keep a year</li>
     </ol>
+    <a class="halalpill" href="meals.html?halal=1">New: halal meal plans with real prices <span aria-hidden="true">&rarr;</span></a>
+    <a class="proof" href="#example" data-act="showex"><span class="k">OUR EXAMPLE FAMILY FOUND</span><b class="exTotal">£1,798 a year</b><span>in about 5 minutes. See how &rarr;</span></a>
+    <button class="btn coral cta" data-act="totool">Start my free check <span aria-hidden="true">&darr;</span></button>
+  </section>
+
+  <section class="tool" id="tool" aria-label="Your home, room by room"></section>
+
+  <section class="more" aria-label="More ways to save">
     <div class="trust">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free to use</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No sign-up</span>
@@ -417,8 +419,6 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
     <a class="mealsbanner" href="/black-friday/" style="margin-top:10px" data-until="2026-12-01T00:00:00"><b>Black Friday: is it really a deal?</b><span>Five quick checks before you buy anything this week</span><span aria-hidden="true" class="arr">&rarr;</span></a>
     <a class="mealsbanner" href="/christmas/" style="margin-top:10px"><b>Christmas on a budget planner</b><span>A budget for each person, kept on your phone</span><span aria-hidden="true" class="arr">&rarr;</span></a>
   </section>
-
-  <section class="tool" id="tool" aria-label="Your home, room by room"></section>
 
   <section class="faq stack" aria-label="Common questions">
     <h2>Common questions</h2>
@@ -972,7 +972,7 @@ function roomPicker(){
 function renderIdle(){
   const any = ROOMS.some(r => roomDone(r.id));
   if (any) return `<div class="start"><h3>Pick your next room</h3><p>Only check the rooms that matter to you.</p>${roomPicker()}<button class="btn primary" data-act="results" style="width:100%;margin-top:14px">See my results</button></div>`;
-  return `<div class="start"><h3>Do the whole house, or just the rooms you want.</h3><p>Short on time? Start with <b>Bills</b> or <b>Food shop</b>. That's where most families find the most.</p>${roomPicker()}<p class="or">or</p><button class="btn ghost" data-act="begin" style="width:100%">Do the whole house (about 3 minutes)</button></div>`;
+  return `<div class="start"><h3>Do the whole house, or just the rooms you want.</h3><p>Short on time? Start with <b>Bills</b> or <b>Food shop</b>. That's where most families find the most.</p>${roomPicker()}<p class="or">or</p><button class="btn ghost" data-act="begin" style="width:100%">Do the whole house (about 5 minutes)</button></div>`;
 }
 function dealList(b){
   if (!b.deals || !b.deals.length) return '';
@@ -1279,7 +1279,7 @@ async function makeShare(){
   x.fillStyle = '#233047'; x.fillText(gbp(c.total), px + pw - 60, py + ph - 200);
   x.font = '500 34px "DM Mono", monospace'; x.fillStyle = '#4C5064'; x.fillText(`${gbp(c.total / 12)} a month`, px + pw - 60, py + ph - 130);
   x.textAlign = 'center'; x.fillStyle = '#FFFFFF'; x.font = '700 58px "Fraunces", sans-serif';
-  x.fillText('Find yours in 2 minutes', W / 2, 1720); x.fillStyle = '#FFD45E'; x.font = '500 44px "DM Mono", monospace'; x.fillText(CONFIG.SITE, W / 2, 1800);
+  x.fillText('Find yours in about 5 minutes', W / 2, 1720); x.fillStyle = '#FFD45E'; x.font = '500 44px "DM Mono", monospace'; x.fillText(CONFIG.SITE, W / 2, 1800);
   const url = cv.toDataURL('image/png');
   document.getElementById('shareOut').innerHTML = `<img src="${url}" alt="Your found money receipt showing ${gbp(c.total)} a year"><p class="hint" style="margin-top:10px">Press and hold the picture to save it, then add it to your story.</p>`;
 }
@@ -1395,7 +1395,7 @@ function start(data){
   if (view === 'results') printed = true;
   lastTotal = Math.round(compute(A).total);
   const stored = load(), wbEl = document.getElementById('welcomeBack');
-  if (wbEl && stored && stored.A && ROOMS.some(r => roomDone(r.id)) && lastTotal >= 1) wbEl.innerHTML = `<div class="wb"><p><b>Welcome back.</b> Last time you found <b>${gbp(lastTotal)} a year</b>. Update a room, or check one you haven't done yet.</p><div class="wb-act"><button class="btn primary small" data-act="results">See my results</button><button class="btn ghost small" data-act="wb-rooms">Check a room</button></div></div>`;
+  if (wbEl && stored && stored.A && ROOMS.some(r => roomDone(r.id)) && lastTotal >= 1) { wbEl.innerHTML = `<div class="wb"><p><b>Welcome back.</b> Last time you found <b>${gbp(lastTotal)} a year</b>. Update a room, or check one you haven't done yet.</p><div class="wb-act"><button class="btn primary small" data-act="results">See my results</button><button class="btn ghost small" data-act="wb-rooms">Check a room</button></div></div>`; wbEl.closest('.hero').classList.add('returning'); }
   litBefore = new Set(ROOMS.filter(r => roomDone(r.id)).map(r => r.id));
   fillExample();
   render();
