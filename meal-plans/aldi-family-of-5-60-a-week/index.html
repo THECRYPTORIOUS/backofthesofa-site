@@ -166,6 +166,18 @@ p{margin:0}
 .house .h-roof{fill:var(--h-roof);stroke:var(--h-stroke);stroke-width:2.5;stroke-linejoin:round} .house .h-wall{fill:var(--h-wall);stroke:var(--h-stroke);stroke-width:2.5}
 .house .h-post{fill:var(--h-stroke)} .house .h-sign{fill:#FFFFFF;stroke:var(--h-stroke);stroke-width:2.5} .house text.signt{fill:#233047}
 .house text{font-family:var(--body);fill:var(--h-label)}
+.house .h-roof,.house .h-wall,.house .h-chim{stroke-width:3.5}
+.house .room rect.fill{stroke-width:3.5}
+.house .room.now rect.fill{stroke-width:4}
+.house .h-shade{fill:#000;opacity:.09}
+.house .h-tiles{fill:none;stroke:var(--h-stroke);stroke-width:2;opacity:.22}
+.house .h-roofline{fill:none;stroke:var(--h-stroke);stroke-width:3.5;stroke-linejoin:round}
+.house .h-chimcap{fill:var(--h-chim);stroke:var(--h-stroke);stroke-width:3.5}
+.house .h-tuft{fill:none;stroke:#000;opacity:.16;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.house .h-bushes circle{fill:var(--h-grass);stroke:var(--h-stroke);stroke-width:3}
+.house .r-shade{fill:#000;opacity:.06;pointer-events:none}
+.house .badge rect{stroke-width:3}
+.house .h-sign{stroke-width:3.5}
 .house .room.done text.rl{fill:var(--h-label-lit)}
 .house .rl{font-size:14px;font-weight:800}
 .house .badge rect{fill:#FFFFFF;stroke:var(--h-stroke);stroke-width:2}
@@ -196,6 +208,14 @@ p{margin:0}
 @keyframes pop{from{transform:translateY(-8px) scale(.96);opacity:0}to{transform:none;opacity:1}}
 .start{background:var(--bg);border-radius:20px;padding:18px 16px;text-align:center}
 .proof{display:block;margin-top:16px;background:var(--pay-bg);color:var(--pay-ink);border-radius:20px;padding:14px 18px;text-decoration:none}
+.proof-art{padding:10px 10px 14px}
+.proof-art .art{display:block;background:#FBF4E8;border-radius:14px;margin:0 0 12px;overflow:hidden}
+.proof-art .art svg{display:block;width:100%;height:auto}
+.proof-art .k,.proof-art b,.proof-art>span:last-child{padding:0 8px}
+.bs-f1>g,.bs-f2>g,.bs-f3>g{transform-box:fill-box;transform-origin:center;animation:bsFloat 2.8s ease-in-out infinite}
+.bs-f2>g{animation-delay:-.9s}.bs-f3>g{animation-delay:-1.8s}
+@keyframes bsFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.bs-f1>g,.bs-f2>g,.bs-f3>g{animation:none}}
 .proof .k{display:block;font:700 11.5px/1 var(--mono);letter-spacing:.12em;opacity:.8}
 .proof b{display:block;font:var(--dw) 34px/1.1 var(--display);letter-spacing:-.5px;margin:6px 0 2px}
 .proof span:last-child{font-size:14.5px;font-weight:600}
@@ -468,6 +488,118 @@ footer .fine{font-size:12.5px;color:var(--foot-ink);opacity:.85}
 try{var f=(new URLSearchParams(location.search).get('from')||'').toLowerCase();if(/^[a-z]{2,20}$/.test(f))localStorage.setItem(K,JSON.stringify({f:f,t:Date.now()}));}catch(e){}
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="amazon.co.uk"]');if(!a)return;
 try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592e6||!TAGS[s.f])return;var u=new URL(a.href);u.searchParams.set('tag',TAGS[s.f]);a.href=u.toString();}catch(e){}},true);})();</script><!--/track-->
+<style id="cartoon">
+/* ---------- cartoon style: navy outlines, hard shadows and chunky buttons, like the videos ---------- */
+:root,[data-theme="sunday"]{--ol:#1F2B4D;--olw:2.5px;--sh:0 4px 0 var(--ol);--sh-s:0 3px 0 var(--ol);--tile:#FFD45E;--tile-ink:#1F2B4D}
+[data-theme="pastel"]{--ol:#4A3B5C;--sh:0 4px 0 var(--ol);--sh-s:0 3px 0 var(--ol);--tile:#FFE7A6}
+[data-theme="bright"]{--ol:#2B1B3F;--sh:0 4px 0 var(--ol);--sh-s:0 3px 0 var(--ol);--tile:#FFD23F}
+[data-theme="evening"]{--ol:#0B0E22;--sh:0 4px 0 var(--ol);--sh-s:0 3px 0 var(--ol);--tile:#FFC46B}
+
+/* raised cards */
+.card,.tool,.item,details,.wb,.plancard,.hrow,.xrow,.day,.mealsbanner,.steps li,.checks li{border:var(--olw) solid var(--ol);box-shadow:var(--sh)}
+.tool{border-radius:28px}
+.day.sun{border-color:var(--ol);background:linear-gradient(var(--card),var(--card)) padding-box}
+.mealsbanner{border-style:solid}
+.mealsbanner.mealnext{border:var(--olw) solid var(--ol);background:var(--mint);color:var(--mint-ink)}
+.mealsbanner.mealnext span{color:inherit;opacity:.9}
+/* cards inside cards: outline, no shadow */
+.qcard,.start,.roomrep{border:var(--olw) solid var(--ol)}
+.mini,.deals li,.pf-row{border:2px solid var(--ol)}
+.day details,.wins details,.item details{box-shadow:none}
+.day details{border:0;border-top:2px dashed var(--line)}
+
+/* yellow money cards */
+.proof,.sum,.tot,.bonus{border:var(--olw) solid var(--ol);box-shadow:var(--sh)}
+.payback{border:2px solid var(--ol)}
+.proof-art .art{border:var(--olw) solid var(--ol)}
+.sum.over{border-color:var(--ol)}
+
+/* buttons: outline, hard shadow, press down when tapped */
+.btn,.item a.shop,.planlink,.minishop,.halalpill,.linkrow a{border:var(--olw) solid var(--ol);box-shadow:var(--sh);transition:transform .08s ease,box-shadow .08s ease}
+.btn.primary,.item a.shop,.planlink,.minishop,.sum .acts .btn.change{box-shadow:inset 0 -5px 0 rgba(0,0,0,.28),var(--sh)}
+.btn{font-weight:800;border-radius:18px}
+.btn.ghost{border:var(--olw) solid var(--ol);background:var(--card)}
+.btn.small{box-shadow:var(--sh-s)}
+.btn.wa{border-color:var(--ol)}
+.item a.shop{border-radius:14px}
+.minishop{box-shadow:var(--sh-s)}
+.halalpill,.linkrow a{box-shadow:var(--sh-s)}
+.btn:active,.item a.shop:active,.planlink:active,.minishop:active,.halalpill:active,.linkrow a:active,.mealsbanner:active,.plancard:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ol)}
+
+/* answer chips and room picks */
+.chip,.pick,.stepper button,.ptabs button{border:var(--olw) solid var(--ol);box-shadow:var(--sh-s);transition:transform .08s ease,box-shadow .08s ease,background .15s}
+.chip:active,.pick:active,.stepper button:active,.ptabs button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ol)}
+.chip[aria-pressed="true"],.ptabs button[aria-selected="true"],.rate .chip[aria-pressed="true"]{border-color:var(--ol);transform:translateY(2px);box-shadow:0 1px 0 var(--ol)}
+.qbig .chip{border-radius:16px}
+.stepper button{border-radius:50%}
+.picker{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pick{position:relative;min-height:96px;min-width:0}
+.pick b{padding-right:44px}
+.pick.big{border:var(--olw) solid var(--ol);background:var(--butter-soft)}
+.pick .pick-ic{position:absolute;top:9px;right:6px;width:40px;height:34px;pointer-events:none}
+.pick.big .pick-ic{top:40px}
+.pick.big b{padding-right:44px}
+.pick .tag,.pick em{position:relative}
+
+/* little labels */
+.pill,.pick .tag,.deals .dl-tag,.dn,.found,.roomtag{border:2px solid var(--ol)}
+.pill{padding:5px 10px}
+.found{box-shadow:var(--sh-s)}
+.roomtag{box-shadow:var(--sh-s)}
+.trust span{border:2px solid var(--ol);box-shadow:var(--sh-s)}
+.trust svg{box-sizing:content-box;padding:2px;border-radius:50%;background:var(--mint);color:var(--mint-ink);border:1.5px solid var(--ol);width:12px;height:12px}
+
+/* numbers */
+.how li span,.steps .num{background:var(--tile);color:var(--tile-ink);border:2px solid var(--ol);box-shadow:0 2px 0 var(--ol)}
+
+/* form fields */
+.money,.hrow input.n,.hrow .nm input,.xrow input.n,.xrow .who{border:var(--olw) solid var(--ol)}
+.money:focus-within{border-color:var(--ol);box-shadow:0 0 0 3px var(--butter)}
+.sline .box{border:2px solid var(--ol);border-radius:7px}
+.xrow input[type=checkbox],.hrow input[type=checkbox]{accent-color:var(--good)}
+.tabs{border:2px solid var(--ol)}
+.tabs button[aria-selected="true"]{box-shadow:0 0 0 2px var(--ol)}
+.sd .bar{border:2px solid var(--ol);height:16px}
+.share img{border:var(--olw) solid var(--ol)}
+
+/* link cards: an icon tile on the left and a round arrow */
+.mealsbanner,.plancard{grid-template-columns:auto 1fr auto;column-gap:12px;transition:transform .08s ease,box-shadow .08s ease}
+.mealsbanner b,.plancard b{grid-column:2}
+.mealsbanner span,.plancard span{grid-column:2}
+.mealsbanner::before,.plancard::before{content:"";grid-column:1;grid-row:1/3;align-self:center;width:46px;height:46px;border-radius:14px;border:2px solid var(--ol);background:var(--tile) var(--ic,none) center/34px no-repeat}
+.mealsbanner .arr,.plancard .arr{grid-column:3;grid-row:1/3;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:800 17px/1 var(--body);background:var(--card);color:var(--ink);border:2px solid var(--ol);box-shadow:0 2px 0 var(--ol)}
+
+/* common questions: + in a yellow circle */
+details summary{align-items:center}
+details summary::after{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--tile);color:var(--tile-ink);border:2px solid var(--ol);font:800 19px/1 var(--body);box-shadow:0 2px 0 var(--ol)}
+.day details summary::after{width:26px;height:26px;font-size:16px}
+
+/* theme dots */
+.themes button{border:2px solid var(--ol)}
+
+/* page pictures */
+.scene{display:block;margin:18px 0 4px;background:#FBF4E8;border:var(--olw) solid var(--ol);border-radius:22px;box-shadow:var(--sh);overflow:hidden}
+.scene svg{display:block;width:100%;height:auto}
+.res-cheer{margin:12px 0 2px}
+
+/* footer: scalloped edge like the roof tiles */
+footer{position:relative;margin-top:52px}
+footer::before{content:"";position:absolute;left:0;right:0;top:-13px;height:14px;background:radial-gradient(circle at 13px 14px,var(--foot-bg) 12.5px,transparent 13px) 0 0/26px 14px repeat-x}
+
+/* small phones: keep the header on one line */
+@media (max-width:374px){.themes{gap:5px}.themes button{width:24px;height:24px}.brand{font-size:18px;gap:5px}.brand svg{width:38px;height:27px}}
+.toast,.help,.swap,.verdict,.recipe .tip{border:2px solid var(--ol)}
+:is(.mealsbanner,.plancard){--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Crect%20x%3D%229%22%20y%3D%2212%22%20width%3D%2230%22%20height%3D%2218%22%20rx%3D%226%22%20fill%3D%22%23EF7159%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%2222%22%20width%3D%2210%22%20height%3D%2215%22%20rx%3D%224%22%20fill%3D%22%23D9573F%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%2234%22%20y%3D%2222%22%20width%3D%2210%22%20height%3D%2215%22%20rx%3D%224%22%20fill%3D%22%23D9573F%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%2212%22%20y%3D%2227%22%20width%3D%2224%22%20height%3D%2210%22%20rx%3D%223%22%20fill%3D%22%23F48C76%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M14%2037v5M34%2037v5%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E")}
+.mealsbanner[href*="meals.html"],.plancard[href*="meals.html"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Crect%20x%3D%2217%22%20y%3D%228%22%20width%3D%2210%22%20height%3D%2210%22%20rx%3D%222%22%20fill%3D%22%234CAF7A%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2213%22%20r%3D%225%22%20fill%3D%22%23EF7159%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M4%2010h6l5%2019h21l4-14H12%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M15%2029l-2%206h24%22%20fill%3D%22none%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2240%22%20r%3D%223.6%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2233%22%20cy%3D%2240%22%20r%3D%223.6%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E")}
+.mealsbanner[href*="meal-plans"],.plancard[href*="meal-plans"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Cpath%20d%3D%22M17%204c-2%202%202%204%200%206M24%203c-2%202%202%204%200%206M31%204c-2%202%202%204%200%206%22%20fill%3D%22none%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M9%2022c2-7%208-10%2015-10s13%203%2015%2010z%22%20fill%3D%22%23F2C14E%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2217%22%20r%3D%222.4%22%20fill%3D%22%234CAF7A%22%2F%3E%3Ccircle%20cx%3D%2227%22%20cy%3D%2215%22%20r%3D%222.2%22%20fill%3D%22%23EF7159%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2219%22%20r%3D%222.2%22%20fill%3D%22%234CAF7A%22%2F%3E%3Cpath%20d%3D%22M5%2022h38a19%2017%200%200%201-38%200z%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M12%2028a12%209%200%200%200%208%207%22%20fill%3D%22none%22%20stroke%3D%22%23C9D3E3%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%2217%22%20y%3D%2238%22%20width%3D%2214%22%20height%3D%225%22%20rx%3D%222%22%20fill%3D%22%23EF7159%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E")}
+.mealsbanner[href*="black-friday"],.plancard[href*="black-friday"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Cpath%20d%3D%22M24%205h15a4%204%200%200%201%204%204v15L23%2044a3%203%200%200%201-4%200L4%2029a3%203%200%200%201%200-4z%22%20fill%3D%22%23EF7159%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2235%22%20cy%3D%2213%22%20r%3D%223.4%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Ctext%20x%3D%2221%22%20y%3D%2231%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2214%22%20fill%3D%22%23FFFFFF%22%3E%25%3C%2Ftext%3E%3C%2Fsvg%3E")}
+.mealsbanner[href*="christmas"],.plancard[href*="christmas"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Crect%20x%3D%226%22%20y%3D%2220%22%20width%3D%2236%22%20height%3D%2222%22%20rx%3D%223%22%20fill%3D%22%23EF7159%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%2213%22%20width%3D%2240%22%20height%3D%229%22%20rx%3D%223%22%20fill%3D%22%23F48C76%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M24%2013v29%22%20stroke%3D%22%23FFD45E%22%20stroke-width%3D%226%22%2F%3E%3Cpath%20d%3D%22M24%2013v29%22%20fill%3D%22none%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%220%22%2F%3E%3Cpath%20d%3D%22M21%2013v29M27%2013v29%22%20fill%3D%22none%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M24%2013c-4-8-14-8-12-2%201%203%207%203%2012%202zM24%2013c4-8%2014-8%2012-2-1%203-7%203-12%202z%22%20fill%3D%22%23FFD45E%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E")}
+.mealsbanner[href*="sim-deals"],.plancard[href*="sim-deals"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Crect%20x%3D%2212%22%20y%3D%224%22%20width%3D%2222%22%20height%3D%2240%22%20rx%3D%225%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%2216%22%20y%3D%2210%22%20width%3D%2214%22%20height%3D%2224%22%20rx%3D%222%22%20fill%3D%22%237FC2F5%22%2F%3E%3Cpath%20d%3D%22M19%2030v-3M23%2030v-6M27%2030v-9%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2238%22%20cy%3D%2234%22%20r%3D%228%22%20fill%3D%22%23FFD45E%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Ctext%20x%3D%2238%22%20y%3D%2238.5%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-weight%3D%22900%22%20font-size%3D%2212%22%20fill%3D%22%238A5A12%22%3E%C2%A3%3C%2Ftext%3E%3C%2Fsvg%3E")}
+.mealsbanner[href*="cooking-costs"],.plancard[href*="cooking-costs"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Cpath%20d%3D%22M10%2014c0-5%204-9%209-9h10c5%200%209%204%209%209v24a5%205%200%200%201-5%205H15a5%205%200%200%201-5-5z%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2220%22%20width%3D%2218%22%20height%3D%2215%22%20rx%3D%224%22%20fill%3D%22%23FFB25E%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M19%2025h8%22%20stroke%3D%22%23FFE0B0%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2212%22%20r%3D%222.2%22%20fill%3D%22%231F2B4D%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2212%22%20r%3D%222.2%22%20fill%3D%22%23EF7159%22%2F%3E%3C%2Fsvg%3E")}
+.mealsbanner[href*="free-trials"],.plancard[href*="free-trials"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Crect%20x%3D%225%22%20y%3D%229%22%20width%3D%2238%22%20height%3D%2233%22%20rx%3D%225%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M5%2014a5%205%200%200%201%205-5h28a5%205%200%200%201%205%205v5H5z%22%20fill%3D%22%23EF7159%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M14%205v8M34%205v8%22%20fill%3D%22none%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2224%22%20cy%3D%2231%22%20r%3D%227%22%20fill%3D%22%23FFD45E%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M20.5%2031l2.5%202.5%204.5-5%22%20fill%3D%22none%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E")}
+.mealsbanner[href*="habit-cost"],.plancard[href*="habit-cost"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Cpath%20d%3D%22M12%2014h24l-3%2028H15z%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%229%22%20y%3D%229%22%20width%3D%2230%22%20height%3D%227%22%20rx%3D%223%22%20fill%3D%22%23EF7159%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M14%2024h20l-1.4%2010H15.4z%22%20fill%3D%22%23B9773A%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M20%203c-2%202%202%203%200%205M27%203c-2%202%202%203%200%205%22%20fill%3D%22none%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E")}
+.mealsbanner[href="/"],.plancard[href="/"],.mealsbanner[href="index.html"],.plancard[href="index.html"],.mealsbanner[href="/index.html"],.plancard[href="/index.html"],.mealsbanner[href^="/?"],.plancard[href^="/?"],.mealsbanner[href^="index.html?"],.plancard[href^="index.html?"],.mealsbanner[href^="/#"],.plancard[href^="/#"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20width%3D%2248%22%20height%3D%2248%22%3E%3Cpath%20d%3D%22M24%206%204%2022h6v20h28V22h6z%22%20fill%3D%22%23FFFFFF%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M24%206%204%2022h40z%22%20fill%3D%22%23EF7159%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%2219%22%20y%3D%2228%22%20width%3D%2210%22%20height%3D%2214%22%20rx%3D%222%22%20fill%3D%22%23FFD45E%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3Crect%20x%3D%2231%22%20y%3D%229%22%20width%3D%225%22%20height%3D%229%22%20fill%3D%22%23D9573F%22%20stroke%3D%22%231F2B4D%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E")}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -480,6 +612,7 @@ try{var s=JSON.parse(localStorage.getItem(K)||'null');if(!s||Date.now()-s.t>2592
     <h1>£60 a week Aldi meal plan for a family of 5</h1>
     <p class="lede">Seven dinners plus simple breakfasts and lunches for 2 adults and 3 children, for £59.02 at Aldi. Every dinner comes with the recipe, and the shopping list is priced from Aldi&#x27;s own website.</p>
     <div class="trust"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Recipes included</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Prices checked 23 November 2026</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free, no sign-up</span></div>
+    <figure class="scene" data-scene="meal-plan"><svg viewBox="170 0 800 500" role="img" aria-label="A bag of shopping for the week and the receipt" xmlns="http://www.w3.org/2000/svg"><ellipse cx="560" cy="478" rx="330" ry="22" fill="#1F2B4D" opacity=".08"/><path d="M360 170c-10-60 40-96 90-80 30 10 44 40 40 80z" fill="#E9B25C" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M390 130c14-12 32-16 50-12" fill="none" stroke="#C98C3A" stroke-width="6" stroke-linecap="round"/><path d="M470 170l30-110" stroke="#1F2B4D" stroke-width="30" stroke-linecap="round"/><path d="M470 170l30-110" stroke="#EF8A3A" stroke-width="18" stroke-linecap="round"/><path d="M500 60c-6-24 6-36 18-38M500 60c10-20 28-24 38-18" fill="none" stroke="#4CAF7A" stroke-width="9" stroke-linecap="round"/><rect x="530" y="70" width="62" height="104" rx="12" fill="#FFFFFF" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><rect x="538" y="52" width="46" height="26" rx="6" fill="#7FC2F5" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><rect x="536" y="104" width="50" height="34" rx="5" fill="#7FC2F5"/><circle cx="610" cy="150" r="30" fill="#EF7159" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M610 122c2-10 8-14 14-14" fill="none" stroke="#1F2B4D" stroke-width="5" stroke-linecap="round"/><path d="M330 170h300l24 300H306z" fill="#E7C796" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M330 170l-24 300M630 170l24 300" stroke="#C9A06A" stroke-width="0"/><path d="M600 170l24 300h30l-24-300z" fill="#D2AC74"/><path d="M330 170h300l24 300H306z" fill="none" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M400 210c0-30 20-44 40-44s40 14 40 44M480 210c0-30 20-44 40-44s40 14 40 44" fill="none" stroke="#1F2B4D" stroke-width="9" stroke-linecap="round" opacity="0"/><rect x="400" y="300" width="160" height="70" rx="14" fill="#FFFFFF" stroke="#1F2B4D" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><text x="480" y="346" font-size="30" font-family="Figtree, Nunito, sans-serif" font-weight="800" fill="#1F2B4D" text-anchor="middle">7 dinners</text><g transform="translate(720 120) rotate(6)"><path d="M0 0h170v300l-14-12-14 12-14-12-14 12-14-12-14 12-14-12-14 12-14-12-14 12-14-12-14 12-14-12z" fill="#FFFFFF" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 40h70" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M132 40h18" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M22 80h93" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M132 80h18" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M22 120h76" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M132 120h18" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M22 160h99" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M132 160h18" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M22 200h82" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M132 200h18" stroke="#C3C6D2" stroke-width="8" stroke-linecap="round"/><path d="M22 240h128" stroke="#1F2B4D" stroke-width="4" stroke-dasharray="6 6"/><text x="85" y="282" font-size="30" font-family="Figtree, Nunito, sans-serif" font-weight="800" fill="#1F2B4D" text-anchor="middle">£££</text></g><g transform="translate(260 420) scale(1)"><circle r="25" fill="#FFD45E" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><circle r="15" fill="none" stroke="#E0A92E" stroke-width="5"/><text y="10" font-size="27" font-family="Figtree, Nunito, sans-serif" font-weight="800" fill="#B9822A" text-anchor="middle">£</text></g><g transform="translate(222 452) scale(0.8)"><circle r="25" fill="#FFD45E" stroke="#1F2B4D" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><circle r="15" fill="none" stroke="#E0A92E" stroke-width="5"/><text y="10" font-size="27" font-family="Figtree, Nunito, sans-serif" font-weight="800" fill="#B9822A" text-anchor="middle">£</text></g><path transform="translate(260 120) scale(0.8)" d="M0 -22Q3 -3 22 0Q3 3 0 22Q-3 3 -22 0Q-3 -3 0 -22Z" fill="#FFFFFF" stroke="#1F2B4D" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><path transform="translate(940 90) scale(0.7)" d="M0 -22Q3 -3 22 0Q3 3 0 22Q-3 3 -22 0Q-3 -3 0 -22Z" fill="#FFFFFF" stroke="#1F2B4D" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg></figure>
   </section>
 
   <div class="sum" style="margin-top:22px">
